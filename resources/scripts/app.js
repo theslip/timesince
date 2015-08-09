@@ -1,5 +1,19 @@
 var app = app || {};
 
+app.main = function main() {
+  var dateDifference = app.getDifferenceBetweenDates();
+  var concatString = '';
+
+  _.each(dateDifference, function(value, key) {
+    concatString += value.time + ' ' + value.name;
+    if ((dateDifference.length)-1 !== key) {
+      console.log(_.size(dateDifference));
+      concatString += ', ';
+    }
+  });
+  app.setTextInElement('difference', concatString);
+};
+
 app.getDateFromInput = function getDateFromInput() {
   var dateEnteredByUser = document.getElementById("date").value;
   dateEnteredByUser = new Date(dateEnteredByUser);
@@ -40,7 +54,8 @@ app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
     'months',
     'days',
     'hours',
-    'minutes'
+    'minutes',
+    'seconds'
   ];
 
   _.each(unitOfTime, function(unit, index) {
@@ -54,18 +69,4 @@ app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
 
 app.setTextInElement = function setTextInElement(elementName, text) {
   document.getElementById(elementName).innerHTML = text;
-};
-
-app.main = function main() {
-  var dateDifference = app.getDifferenceBetweenDates();
-  var concatString = '';
-
-  _.each(dateDifference, function(value, key) {
-    concatString += value.time + ' ' + value.name;
-    if ((dateDifference.length)-1 !== key) {
-      console.log(_.size(dateDifference));
-      concatString += ', ';
-    }
-  });
-  app.setTextInElement('difference', concatString);
 };
