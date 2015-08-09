@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>timesince</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet type="text/css" href="resources/styles/site.css" />
+</head>
+
+<body>
+
+<div class="container">
+  <label for="date">Enter a date</label>
+  <input type="text" id="date" value="03/13/1993">
+  <button id="submit-btn" onclick="app.main()">Submit</button>
+
+  <div id="difference"></div>
+</div>
+
+<script type="text/javascript" src="bower_components/moment/moment.js"></script>
+<script type="text/javascript" src="bower_components/lodash/lodash.js"></script>
+<script type="text/javascript" src="resources/scripts/app.js"></script>
+</body>
+</html>
