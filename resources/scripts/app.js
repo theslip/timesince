@@ -9,32 +9,46 @@ app.getDateFromInput = function getDateFromInput() {
   return dateEnteredByUser;
 };
 
+app.dateDifference = function dateDifference(name, date1, date2) {
+  this.name = name;
+  this.date1 = date1;
+  this.date2 = date2;
+  this.time = this.addDifference(this.date1, this.date2, name);
+};
 
-app.addDifference = function addDifference(date1, date2, unitOfTime) {
+app.dateDifference.prototype.addDifference = function addDifference(date1, date2, unitOfTime) {
   var difference = date1.diff(date2, unitOfTime);
   date2.add(moment.duration(difference, unitOfTime));
 
   return difference;
 };
 
+app.dateDifference.prototype.getName = function getName() {
+  return this.name;
+}
+
+app.dateDifference.prototype.getTime = function getName() {
+  return this.time;
+}
+
 app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
   var userDate = app.getDateFromInput();
   var currentTime = moment();
+  var difference = [];
+  var unitOfTime = [
+    'years',
+    'months',
+    'days',
+    'hours',
+    'minutes'
+  ];
 
-  var differenceBetweenDatesInYears = app.addDifference(currentTime, userDate, 'years');
-  var differenceBetweenDatesInMonths = app.addDifference(currentTime, userDate, 'months');
-  var differenceBetweenDatesInDays = app.addDifference(currentTime, userDate, 'days');
-  var differenceBetweenDatesInHours = app.addDifference(currentTime, userDate, 'hours');
-  var differenceBetweenDatesInMinutes = app.addDifference(currentTime, userDate, 'minutes');
+  _.each(unitOfTime, function(unit, index) {
+    var dateDifference = new app.dateDifference(unit, currentTime, userDate);
+    difference.push(dateDifference);
+  });
 
-  var difference = {
-    years: differenceBetweenDatesInYears,
-    months: differenceBetweenDatesInMonths,
-    days: differenceBetweenDatesInDays,
-    hours: differenceBetweenDatesInHours,
-    minutes: differenceBetweenDatesInMinutes
-  };
-
+  console.log(difference);
   return difference;
 };
 
@@ -45,13 +59,11 @@ app.setTextInElement = function setTextInElement(elementName, text) {
 app.main = function main() {
   var dateDifference = app.getDifferenceBetweenDates();
   var concatString = '';
-  var index = 0;
 
   _.each(dateDifference, function(value, key) {
-    index++;
-
-    concatString += value + ' ' + key;
-    if (index !== _.size(dateDifference)) {
+    concatString += value.time + ' ' + value.name;
+    if ((dateDifference.length)-1 !== key) {
+      console.log(_.size(dateDifference));
       concatString += ', ';
     }
   });
