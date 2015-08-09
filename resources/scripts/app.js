@@ -18,7 +18,6 @@ app.getDateFromInput = function getDateFromInput() {
   var dateEnteredByUser = document.getElementById("date").value;
   dateEnteredByUser = new Date(dateEnteredByUser);
   dateEnteredByUser = moment(dateEnteredByUser);
-  console.log(dateEnteredByUser);
 
   return dateEnteredByUser;
 };
