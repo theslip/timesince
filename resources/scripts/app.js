@@ -30,6 +30,7 @@ app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
   var unitOfTime = [
     'years',
     'months',
+    'weeks',
     'days',
     'hours',
     'minutes',
@@ -41,7 +42,6 @@ app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
     difference.push(dateDifference);
   });
 
-  console.log(difference);
   return difference;
 };
 
