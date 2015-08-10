@@ -3,12 +3,10 @@ var app = app || {};
 app.main = function main() {
   var dateDifference = app.getDifferenceBetweenDates();
   var concatString = '';
-  console.log("diff: ", dateDifference);
 
   _.each(dateDifference, function(value, key) {
     concatString += value.time + ' ' + value.name;
     if ((dateDifference.length)-1 !== key) {
-      console.log(_.size(dateDifference));
       concatString += ', ';
     }
   });
