@@ -11,6 +11,7 @@ html {
 }
 
 .container {
+  text-align: center;
   min-width: 420px;
   position: absolute;
   left: 50%;
@@ -21,7 +22,7 @@ html {
 input {
   border-radius: 0;
   border-style: none;
-  border-bottom: 4px solid #94BCE4;
+  border-bottom: 3px solid #94BCE4;
 }
 
 input:focus {
@@ -33,7 +34,6 @@ button {
   font-size: 0.9em;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-
   border: none;
   padding: 1em;
   margin: 1.5em 1em;
@@ -43,15 +43,15 @@ button:focus {
   outline: none;
 }
 
-.btn-blue {
+/*.btn-blue {
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   background-color: #3498db;
-}
+}*/
 
-.btn-blue:hover {
+/*.btn-blue:hover {
   background-color: #2980b9;
-}
+}*/
 
 #date {
   font-size: 1.5em;
@@ -86,8 +86,23 @@ button:focus {
   color: #94BCE4;
 }
 
+@media (max-width: 915px) {
+  .date-heading {
+    font-size: 3.0em;
+  }
+}
+
 @media (max-width: 600px) {
   .container {
     min-width: 320px;
+  }
+  .date-heading {
+    font-size: 2.6em;
+  }
+  #date {
+    width: 90%;
+  }
+  input {
+    border-bottom: 2px solid #94BCE4;
   }
 }
