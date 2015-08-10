@@ -3,7 +3,7 @@ var app = app || {};
 app.main = function main() {
   var dateDifference = app.getDifferenceBetweenDates();
   var concatString = '';
-
+  console.log(dateDifference);
   _.each(dateDifference, function(value, key) {
     concatString += value.time + ' ' + value.name;
     if ((dateDifference.length)-1 !== key) {
@@ -29,7 +29,8 @@ app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
     'years',
     'months',
     'weeks',
-    'days'
+    'days',
+    'hours'
   ];
 
   _.each(unitOfTime, function(unit, index) {
