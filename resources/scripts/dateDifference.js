@@ -6,9 +6,8 @@ app.dateDifference = function dateDifference(name, date1, date2) {
 };
 
 app.dateDifference.prototype.addDifference = function addDifference(date1, date2, unitOfTime) {
-  var difference = date1.diff(date2, unitOfTime);
+  var difference = date1.diff(date2, unitOfTime) || undefined;
   date2.add(moment.duration(difference, unitOfTime));
-
   return difference;
 };
 
