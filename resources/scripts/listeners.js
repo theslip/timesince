@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', installListeners);
 
 function installListeners () {
-  document.getElementById('date').onkeypress = function(event) {
+  var dateInput = document.getElementById('date');
+  dateInput.focus();
+  dateInput.onkeypress = function(event) {
     var keyCode = event.keyCode || event.which;
     if (keyCode == '13') {
       app.main();
