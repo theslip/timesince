@@ -3,6 +3,7 @@ var app = app || {};
 app.main = function main() {
   var dateDifference = app.getDifferenceBetweenDates();
   var concatString = '';
+  console.log("diff: ", dateDifference);
 
   _.each(dateDifference, function(value, key) {
     concatString += value.time + ' ' + value.name;
@@ -15,7 +16,7 @@ app.main = function main() {
 };
 
 app.getDateFromInput = function getDateFromInput() {
-  var dateEnteredByUser = document.getElementById("date").value;
+  var dateEnteredByUser = app.getTextFromElement('date');
   dateEnteredByUser = new Date(dateEnteredByUser);
   dateEnteredByUser = moment(dateEnteredByUser);
 
@@ -38,10 +39,17 @@ app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
 
   _.each(unitOfTime, function(unit, index) {
     var dateDifference = new app.dateDifference(unit, currentTime, userDate);
+    if (_.isUndefined(dateDifference.time)) {
+      return;
+    }
     difference.push(dateDifference);
   });
 
   return difference;
+};
+
+app.getTextFromElement = function getTextFromElement(name) {
+  return document.getElementById(name).value;
 };
 
 app.setTextInElement = function setTextInElement(elementName, text) {
