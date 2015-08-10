@@ -1,14 +1,10 @@
 document.addEventListener('DOMContentLoaded', installListeners);
 
 function installListeners () {
-document.getElementById('date').onkeypress = function(e) {
-    if (!e) e = window.event;
-    var keyCode = e.keyCode || e.which;
-    if (keyCode == '13'){
-      console.log('enter pressed');
+  document.getElementById('date').onkeypress = function(event) {
+    var keyCode = event.keyCode || event.which;
+    if (keyCode == '13') {
       app.main();
-      // installInterval();
-      return false;
     }
   }
 }
