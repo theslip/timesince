@@ -90,6 +90,9 @@ button:focus {
   .date-heading {
     font-size: 3.0em;
   }
+  #date {
+    width: 81%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -100,7 +103,7 @@ button:focus {
     font-size: 2.6em;
   }
   #date {
-    width: 90%;
+    width: 91%;
   }
   input {
     border-bottom: 2px solid #94BCE4;
