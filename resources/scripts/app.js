@@ -1,16 +1,24 @@
 var app = app || {};
 
 app.main = function main() {
+  var differenceInput = document.getElementById('difference');
   var dateDifference = app.getDifferenceBetweenDates();
   var concatString = '';
-  console.log(dateDifference);
+
   _.each(dateDifference, function(value, key) {
     concatString += value.time + ' ' + value.name;
     if ((dateDifference.length)-1 !== key) {
       concatString += ', ';
     }
   });
-  app.setTextInElement('difference', concatString);
+  if (_.isEmpty(concatString)) {
+    differenceInput.classList.remove('cursor-text');
+    app.setTextInElement('difference', '');
+  }
+  else {
+    differenceInput.classList.add('cursor-text');
+    app.setTextInElement('difference', concatString);
+  }
 };
 
 app.getDateFromInput = function getDateFromInput() {
@@ -41,7 +49,6 @@ app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
     }
     difference.push(dateDifference);
   });
-
   return difference;
 };
 
