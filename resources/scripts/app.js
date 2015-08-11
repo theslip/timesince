@@ -50,5 +50,5 @@ app.getTextFromElement = function getTextFromElement(name) {
 };
 
 app.setTextInElement = function setTextInElement(elementName, text) {
-  document.getElementById(elementName).innerHTML = text;
+  document.getElementById(elementName).value = text;
 };
