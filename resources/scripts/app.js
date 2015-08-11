@@ -3,20 +3,17 @@ var app = app || {};
 app.main = function main() {
   var differenceInput = document.getElementById('difference');
   var dateDifference = app.getDifferenceBetweenDates();
-  var concatString = '';
+  var dateOuput = '';
 
   _.each(dateDifference, function(value, key) {
-    concatString += value.time + ' ' + value.name;
+    dateOuput += value.time + ' ' + value.name;
     if ((dateDifference.length)-1 !== key) {
-      concatString += ', ';
+      dateOuput += ', ';
     }
   });
-  if (_.isEmpty(concatString)) {
-    app.hideDifferenceInput(differenceInput);
-  } else {
-    app.showDifferenceInput(differenceInput);
-    app.setTextInElement('difference', concatString);
-  }
+  !_.isEmpty(dateOuput)
+  ? app.showDifferenceInput(differenceInput, dateOuput)
+  : app.hideDifferenceInput(differenceInput);
 };
 
 app.getDateFromInput = function getDateFromInput() {
@@ -58,7 +55,8 @@ app.setTextInElement = function setTextInElement(elementName, text) {
   document.getElementById(elementName).value = text;
 };
 
-app.showDifferenceInput = function showDifferenceInput(differenceInput) {
+app.showDifferenceInput = function showDifferenceInput(differenceInput, dateOuput) {
+  app.setTextInElement('difference', dateOuput);
   differenceInput.classList.add('cursor-text');
   differenceInput.classList.remove("invisible");
 };
