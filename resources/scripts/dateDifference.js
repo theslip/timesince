@@ -10,11 +10,3 @@ app.dateDifference.prototype.addDifference = function addDifference(date1, date2
   date2.add(moment.duration(difference, unitOfTime));
   return difference;
 };
-
-app.dateDifference.prototype.getName = function getName() {
-  return this.name;
-};
-
-app.dateDifference.prototype.getTime = function getName() {
-  return this.time;
-};
