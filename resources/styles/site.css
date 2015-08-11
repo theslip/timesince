@@ -66,6 +66,10 @@ button:focus {
   width: 100%;
 }
 
+.cursor-text {
+  cursor: text;
+}
+
 .date-heading {
   margin-bottom: 0.2em;
   font-size: 4.0em;
