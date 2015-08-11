@@ -1,4 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,600,600italic,700,700italic,800,800italic);
 @-ms-viewport {width: device-width;}
 @-o-viewport {width: device-width;}
 
@@ -7,9 +6,8 @@ html {
 }
 
 * {
-  color: white;
-  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  color: white;
 }
 
 .container {
@@ -17,12 +15,15 @@ html {
   min-width: 420px;
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 40%;
+  -webkit-transform: translate(-50%, -50%);
+     -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 input {
-  border-radius: 0;
   border-style: none;
   border-bottom: 3px solid #94BCE4;
 }
@@ -65,18 +66,10 @@ button:focus {
   font-weight: 100;
 }
 
-::-webkit-input-placeholder {
-  color: #94BCE4;
-}
-:-moz-placeholder {
-  color: #94BCE4;
-}
-::-moz-placeholder {
-  color: #94BCE4;
-}
-:-ms-input-placeholder {
-  color: #94BCE4;
-}
+:-moz-placeholder {color: #94BCE4;}
+::-moz-placeholder {color: #94BCE4;}
+:-ms-input-placeholder {color: #94BCE4;}
+::-webkit-input-placeholder {color: #94BCE4;}
 
 @media (max-width: 915px) {
   .date-heading {
