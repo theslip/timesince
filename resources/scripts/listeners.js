@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', onDomReady);
 
 function onDomReady() {
   var dateInput = document.getElementById('date');
+  var differenceInput = document.getElementById('difference');
   dateInput.focus();
+  differenceInput.disabled = true;
   installListeners(dateInput)
 };
 
