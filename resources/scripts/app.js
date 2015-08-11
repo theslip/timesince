@@ -12,12 +12,9 @@ app.main = function main() {
     }
   });
   if (_.isEmpty(concatString)) {
-    differenceInput.classList.remove('cursor-text');
-    differenceInput.classList.add("invisible");
-  }
-  else {
-    differenceInput.classList.add('cursor-text');
-    differenceInput.classList.remove("invisible");
+    app.hideDifferenceInput(differenceInput);
+  } else {
+    app.showDifferenceInput(differenceInput);
     app.setTextInElement('difference', concatString);
   }
 };
@@ -59,4 +56,14 @@ app.getTextFromElement = function getTextFromElement(name) {
 
 app.setTextInElement = function setTextInElement(elementName, text) {
   document.getElementById(elementName).value = text;
+};
+
+app.showDifferenceInput = function showDifferenceInput(differenceInput) {
+  differenceInput.classList.add('cursor-text');
+  differenceInput.classList.remove("invisible");
+};
+
+app.hideDifferenceInput= function hideDifferenceInput(differenceInput) {
+  differenceInput.classList.remove('cursor-text');
+  differenceInput.classList.add("invisible");
 };
