@@ -121,6 +121,9 @@ button:focus {
   .ts-input {
     border-bottom: 2px solid #94BCE4;
   }
+  #difference {
+    font-size: 0.7em;
+  }
 }
 
 @media (max-width: 350px) {
@@ -129,5 +132,8 @@ button:focus {
   }
   #date {
     width: 61%;
+  }
+  #difference {
+    font-size: 0.6em;
   }
 }
