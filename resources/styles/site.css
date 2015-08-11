@@ -88,16 +88,22 @@ button:focus {
 }
 
 @media (max-width: 600px) {
-  .container {
-    min-width: 320px;
-  }
   .date-heading {
     font-size: 2.6em;
   }
   #date {
-    width: 91%;
+    width: 71%;
   }
   input {
     border-bottom: 2px solid #94BCE4;
+  }
+}
+
+@media (max-width: 350px) {
+  .date-heading {
+    font-size: 2.3em;
+  }
+  #date {
+    width: 61%;
   }
 }
