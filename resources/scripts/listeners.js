@@ -15,7 +15,7 @@ function installListeners(userInput) {
       app.main();
     }
   }
-}
+};
 
 //Only needed when seconds are enabled
 // function installInterval(userInput) {
