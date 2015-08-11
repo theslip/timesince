@@ -5,6 +5,19 @@ html {
   background-color: #3498db;
 }
 
+body {
+  opacity: 0;
+  -webkit-transition: opacity 1s ease-in-out;
+     -moz-transition: opacity 1s ease-in-out;
+      -ms-transition: opacity 1s ease-in-out;
+       -o-transition: opacity 1s ease-in-out;
+          transition: opacity 1s ease-in-out;
+}
+
+body.visible {
+    opacity: 1;
+}
+
 * {
   font-family: 'Open Sans', sans-serif;
   color: white;
@@ -56,14 +69,21 @@ button:focus {
 }
 
 #difference {
+  opacity: 1;
   background-color: transparent;
-  transition: opacity .25s ease-in-out;
-  -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out;
+     -moz-transition: opacity 1s ease-in-out;
+      -ms-transition: opacity 1s ease-in-out;
+       -o-transition: opacity 1s ease-in-out;
+          transition: opacity 1s ease-in-out;
   text-align: center;
   font-size: 0.8em;
   margin-top: 0.8em;
   width: 100%;
+}
+
+#difference.invisible {
+    opacity: 0;
 }
 
 .cursor-text {

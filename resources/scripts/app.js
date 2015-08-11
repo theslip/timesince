@@ -13,10 +13,11 @@ app.main = function main() {
   });
   if (_.isEmpty(concatString)) {
     differenceInput.classList.remove('cursor-text');
-    app.setTextInElement('difference', '');
+    differenceInput.classList.add("invisible");
   }
   else {
     differenceInput.classList.add('cursor-text');
+    differenceInput.classList.remove("invisible");
     app.setTextInElement('difference', concatString);
   }
 };
