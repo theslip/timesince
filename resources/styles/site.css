@@ -25,6 +25,9 @@ html {
 
 input {
   border-style: none;
+}
+
+.ts-input {
   border-bottom: 3px solid #94BCE4;
 }
 
@@ -53,6 +56,10 @@ button:focus {
 }
 
 #difference {
+  background-color: transparent;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
   text-align: center;
   font-size: 0.8em;
   margin-top: 0.8em;
