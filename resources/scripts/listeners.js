@@ -1,9 +1,13 @@
-document.addEventListener('DOMContentLoaded', installListeners);
+document.addEventListener('DOMContentLoaded', onDomReady);
 
-function installListeners () {
+function onDomReady() {
   var dateInput = document.getElementById('date');
   dateInput.focus();
-  dateInput.onkeypress = function(event) {
+  installListeners(dateInput)
+};
+
+function installListeners(userInput) {
+  userInput.onkeypress = function(event) {
     var keyCode = event.keyCode || event.which;
     if (keyCode == '13') {
       app.main();
@@ -12,9 +16,7 @@ function installListeners () {
 }
 
 //Only needed when seconds are enabled
-// function installInterval () {
-//   var userInput = app.getTextFromElement('date');
-//
+// function installInterval(userInput) {
 //   if (userInput) {
 //     setInterval(app.main, 1000);
 //   }

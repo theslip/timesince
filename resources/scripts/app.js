@@ -30,7 +30,8 @@ app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
     'months',
     'weeks',
     'days',
-    'hours'
+    'hours',
+    'minutes'
   ];
 
   _.each(unitOfTime, function(unit, index) {
