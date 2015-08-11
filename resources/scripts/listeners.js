@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', onDomReady);
 
 function onDomReady() {
-  var dateInput = document.getElementById('date');
   var differenceInput = document.getElementById('difference');
+  var dateInput = document.getElementById('date');
   dateInput.focus();
   differenceInput.disabled = true;
-  installListeners(dateInput)
+  watchForEnterKeyOnDateInput(dateInput)
 };
 
-function installListeners(userInput) {
+function watchForEnterKeyOnDateInput(userInput) {
   userInput.onkeypress = function(event) {
     var keyCode = event.keyCode || event.which;
     if (keyCode == '13') {
