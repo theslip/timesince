@@ -126,6 +126,12 @@ button:focus {
   }
 }
 
+@media (max-width: 420px) {
+  .container {
+    min-width: 100%;
+  }
+}
+
 @media (max-width: 350px) {
   .date-heading {
     font-size: 2.3em;
