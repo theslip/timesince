@@ -1,7 +1,17 @@
 module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
+    express:
+      dev:
+        options:
+          script: "server.js"
     watch:
+      express:
+        files: "index.html"
+        tasks: "express:dev"
+        options:
+          spawn: false
+          livereload: true
       scripts:
         files: "resources/scripts/*.js"
         tasks: "uglify"
@@ -10,11 +20,12 @@ module.exports = (grunt) ->
         tasks: "cssmin"
     uglify:
       target:
-        files: "resources/scripts/min/app.min.js": "resources/scripts/*.js"
+        files: "resources/scripts/app.min.js": "resources/scripts/*.js"
     cssmin:
       target:
-        files: "resources/styles/min/site.min.css": "resources/styles/site.css"
+        files: "resources/styles/site.min.css": "resources/styles/site.css"
 
+    grunt.loadNpmTasks "grunt-express-server"
     grunt.loadNpmTasks "grunt-contrib-watch"
     grunt.loadNpmTasks "grunt-contrib-uglify"
     grunt.loadNpmTasks "grunt-contrib-cssmin"
@@ -22,4 +33,8 @@ module.exports = (grunt) ->
     grunt.registerTask "default", [
       "newer:uglify"
       "newer:cssmin"
+    ]
+    grunt.registerTask "server", [
+      "express:dev"
+      "watch:express"
     ]
