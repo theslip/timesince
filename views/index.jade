@@ -3,16 +3,14 @@ html
   head
     title timesince
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0')
-    link(rel='stylesheet type=', text='', href='resources/styles/site.css')
+    link(rel='stylesheet type=', text='', href='resources/styles/site.min.css')
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800,800italic,300italic', rel='stylesheet', type='text/css')
   body
     .container
       .date-heading Enter Your Date
       input#date.ts-input(type='text', placeholder='e.g. 03/13/1993')
       input#difference
-    script(src='http://localhost:35729/livereload.js')
+    script(type='text/javascript', src='http://localhost:35729/livereload.js')
     script(type='text/javascript', src='components/moment/moment.js')
     script(type='text/javascript', src='components/lodash/lodash.js')
-    script(type='text/javascript', src='resources/scripts/app.js')
-    script(type='text/javascript', src='resources/scripts/dateDifference.js')
-    script(type='text/javascript', src='resources/scripts/listeners.js')
+    script(type='text/javascript', src='resources/scripts/app.min.js')
