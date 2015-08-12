@@ -28,7 +28,15 @@
   "homepage": "https://github.com/theslip/timesince",
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-concurrent": "^2.0.1",
     "grunt-contrib-cssmin": "^0.13.0",
-    "grunt-contrib-uglify": "^0.9.1"
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.5.1",
+    "grunt-newer": "^1.1.1"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
   }
 }
