@@ -9,7 +9,7 @@ app.use('/resources', express.static(__dirname + '/resources'));
 app.use('/components', express.static(__dirname + '/components'));
 
 app.get('/', function(req, res) {
-  res.render('index', { title: 'timesince'});
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.listen(3000, function() {
