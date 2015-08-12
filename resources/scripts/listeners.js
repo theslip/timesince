@@ -13,7 +13,7 @@ function onDomReady() {
   var dateInput = document.getElementById('date');
   dateInput.focus();
   differenceInput.disabled = true;
-  differenceInput.classList.add("invisible");
+  differenceInput.classList.add('invisible');
   watchForEnterKeyOnDateInput(dateInput)
 };
 
