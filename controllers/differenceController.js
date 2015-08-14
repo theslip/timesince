@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var moment = require('moment');
-var fs = require('fs');
-var util = require('util');
+// var fs = require('fs');
+// var util = require('util');
 var dateDifferenceModel = require('../models/dateDifferenceModel.js');
 
 exports.getInputFromUser = function(req, res) {
