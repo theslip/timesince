@@ -1,50 +1,37 @@
 var app = app || {};
 
 app.main = function main() {
-  var differenceInput = document.getElementById('difference');
-  var dateDifference = app.getDifferenceBetweenDates();
-  var dateOuput = '';
-
-  _.each(dateDifference, function(value, key) {
-    dateOuput += value.time + ' ' + value.name;
-    if ((dateDifference.length)-1 !== key) {
-      dateOuput += ', ';
-    }
-  });
-  !_.isEmpty(dateOuput)
-  ? app.showDifferenceInput(differenceInput, dateOuput)
-  : app.hideDifferenceInput(differenceInput);
+  var dateEnteredByUser = {
+    date: app.getDateFromInput()
+  }
+  app.postUserInputToServer(dateEnteredByUser);
 };
+
+app.postUserInputToServer = function postUserInputToServer(dateEnteredByUser) {
+  $.ajax({
+      url: "http://localhost:3000/difference",
+      type: "POST",
+      data: JSON.stringify(dateEnteredByUser),
+      contentType: "application/json; charset=UTF-8",
+      success: function(response) {
+        app.successHandler(response);
+        console.log(response);
+   }
+  });
+};
+
+app.successHandler = function successHandler(response) {
+  var differenceInput = document.getElementById('difference');
+  (response && response != '')
+  ? app.showDifferenceInput(differenceInput, response)
+  : app.hideDifferenceInput(differenceInput);
+}
 
 app.getDateFromInput = function getDateFromInput() {
   var dateEnteredByUser = app.getTextFromElement('date');
   dateEnteredByUser = new Date(dateEnteredByUser);
-  dateEnteredByUser = moment(dateEnteredByUser);
 
   return dateEnteredByUser;
-};
-
-app.getDifferenceBetweenDates = function getDifferenceBetweenDates() {
-  var userDate = app.getDateFromInput();
-  var currentTime = moment();
-  var difference = [];
-  var unitOfTime = [
-    'years',
-    'months',
-    'weeks',
-    'days',
-    'hours',
-    'minutes'
-  ];
-
-  _.each(unitOfTime, function(unit, index) {
-    var dateDifference = new app.dateDifference(unit, currentTime, userDate);
-    if (_.isUndefined(dateDifference.time)) {
-      return;
-    }
-    difference.push(dateDifference);
-  });
-  return difference;
 };
 
 app.getTextFromElement = function getTextFromElement(name) {
