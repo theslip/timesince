@@ -9,9 +9,9 @@ module.exports = (grunt) ->
       express:
         files: [
           "index.html"
-          "routes.js"
-          "resources/scripts/*.js"
-          "controllers/*.js"
+          "app/config/routes.js"
+          "public/scripts/*.js"
+          "app/controllers/*.js"
           "server.js"
         ]
         tasks: "express:dev"
@@ -19,20 +19,20 @@ module.exports = (grunt) ->
           spawn: false
           livereload: true
       scripts:
-        files: "resources/scripts/*.js"
+        files: "public/scripts/*.js"
         tasks: "uglify"
       styles:
-        files: "resources/styles/site.css"
+        files: "public/styles/site.css"
         tasks: "cssmin"
     uglify:
       target:
-        files: "resources/scripts/app.min.js": "resources/scripts/*.js"
+        files: "public/scripts/app.min.js": "public/scripts/*.js"
     cssmin:
       target:
-        files: "resources/styles/site.min.css": "resources/styles/site.css"
+        files: "public/styles/site.min.css": "public/styles/site.css"
     jsbeautifier:
       pretty:
-        src: "logs/*.log"
+        src: "app/logs/*.log"
         options:
           json:
             indentSize: 3
