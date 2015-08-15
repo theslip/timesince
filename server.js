@@ -24,6 +24,6 @@ app.get('/', function(req, res) {
 require('./app/config/routes')(router, differenceController, testController);
 
 app.use(subdomain('timesince', router));
-app.listen(1337, '0.0.0.0', function() {
+app.listen(8080, '0.0.0.0', function() {
   console.log("I'm sorry, Dave. I'm afraid I can't do that.");
 });
