@@ -18,16 +18,16 @@ app.use(express.static(path.join(__dirname, 'timesince')));
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
-router.get('/',function(req,res){
+router.get('/', function(req, res){
   res.sendFile(__dirname + "/public/index.html");
 });
 
 router.post('/difference', differenceController.getInputFromUser);
 router.get('/test', testController.getTestData);
 
-app.use('/',router);
+app.use('/', router);
 
-app.use('*',function(req,res){
+app.use('*', function(req, res) {
   res.sendFile(__dirname + "/public/404.html");
 });
 
