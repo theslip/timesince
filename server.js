@@ -19,6 +19,6 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 require('./app/config/routes')(app, differenceController, testController);
-app.listen(3000, '0.0.0.0', function() {
+app.listen(1337, '0.0.0.0', function() {
   console.log("I'm sorry, Dave. I'm afraid I can't do that.");
 });
