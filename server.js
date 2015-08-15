@@ -1,6 +1,5 @@
 var differenceController = require('./app/controllers/differenceController'),
     testController = require('./app/controllers/testController'),
-    subdomain = require('express-subdomain'),
     bodyParser = require('body-parser'),
     express = require('express'),
     path = require('path'),
@@ -23,7 +22,6 @@ app.get('/', function(req, res) {
 
 require('./app/config/routes')(app, differenceController, testController);
 
-app.use(subdomain('timesince', router));
 app.listen(1337, '0.0.0.0', function() {
   console.log("I'm sorry, Dave. I'm afraid I can't do that.");
 });
