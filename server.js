@@ -1,9 +1,11 @@
 var differenceController = require('./app/controllers/differenceController'),
     testController = require('./app/controllers/testController'),
+    subdomain = require('express-subdomain'),
     bodyParser = require('body-parser'),
     express = require('express'),
     path = require('path'),
-    app = express();
+    app = express(),
+    router = express.Router();
 
 
 var enableCors = require('./app/config/cors');
@@ -18,7 +20,10 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
+
 require('./app/config/routes')(app, differenceController, testController);
-app.listen(3000, '0.0.0.0', function() {
+
+app.use(subdomain('timesince', router));
+app.listen(1337, '0.0.0.0', function() {
   console.log("I'm sorry, Dave. I'm afraid I can't do that.");
 });
