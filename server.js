@@ -1,12 +1,12 @@
 var differenceController = require('./app/controllers/differenceController'),
     testController = require('./app/controllers/testController'),
-    subdomain = require('express-subdomain'),
+    // subdomain = require('express-subdomain'),
     bodyParser = require('body-parser'),
     express = require('express'),
     path = require('path'),
-    app = express(),
-    router = express.Router();
+    app = express();
 
+app.set('port', process.env.PORT || 3000);
 
 var enableCors = require('./app/config/cors');
 
@@ -21,9 +21,9 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-require('./app/config/routes')(router, differenceController, testController);
+require('./app/config/routes')(app, differenceController, testController);
 
-app.use(subdomain('timesince', router));
-app.listen(8080, '0.0.0.0', function() {
+// app.use(subdomain('timesince', router));
+app.listen(app.get('port'), '0.0.0.0', function() {
   console.log("I'm sorry, Dave. I'm afraid I can't do that.");
 });
