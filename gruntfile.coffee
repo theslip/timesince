@@ -7,7 +7,13 @@ module.exports = (grunt) ->
           script: "server.js"
     watch:
       express:
-        files: "index.html"
+        files: [
+          "index.html"
+          "routes.js"
+          "resources/scripts/*.js"
+          "controllers/*.js"
+          "server.js"
+        ]
         tasks: "express:dev"
         options:
           spawn: false
@@ -28,7 +34,7 @@ module.exports = (grunt) ->
       pretty:
         src: "logs/*.log"
         options:
-          json: 
+          json:
             indentSize: 3
 
 
