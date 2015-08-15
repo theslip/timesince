@@ -4,7 +4,7 @@ var bunyan = require('bunyan');
 var dateDifferenceModel = require('../models/dateDifferenceModel.js');
 
 var log = bunyan.createLogger({
-  name: 'differenceController',
+  name: 'differenceControllerLog',
   streams: [{
       type: 'rotating-file',
       path: 'logs/differenceController.log',
