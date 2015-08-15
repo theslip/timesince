@@ -7,7 +7,7 @@ var log = bunyan.createLogger({
   name: 'differenceControllerLog',
   streams: [{
       type: 'rotating-file',
-      path: 'logs/differenceController.log',
+      path: 'app/logs/differenceController.log',
       period: '1d',
       count: 1
   }]
