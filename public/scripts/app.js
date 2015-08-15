@@ -9,7 +9,7 @@ app.main = function main() {
 
 app.postUserInputToServer = function postUserInputToServer(dateEnteredByUser) {
   $.ajax({
-      url: "http://localhost:3000/difference",
+      url: "/difference",
       type: "POST",
       data: JSON.stringify(dateEnteredByUser),
       contentType: "application/json; charset=UTF-8",

@@ -1,4 +1,5 @@
 var differenceController = require('./app/controllers/differenceController'),
+    testController = require('./app/controllers/testController'),
     bodyParser = require('body-parser'),
     express = require('express'),
     path = require('path'),
@@ -17,8 +18,7 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
-require('./app/config/routes')(app, differenceController);
-
+require('./app/config/routes')(app, differenceController, testController);
 app.listen(3000, function() {
   console.log("I'm sorry, Dave. I'm afraid I can't do that.");
 });
