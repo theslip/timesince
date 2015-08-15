@@ -17,6 +17,7 @@ exports.getInputFromUser = function(req, res) {
   res.status(200);
   var differenceLog = log.info(req);
   var dateOuput = '';
+  console.log('DATE :', req.body.date);
   var userInput = req.body.date;
   var dateDifferenceModel = getDifferenceBetweenDates(userInput);
 
