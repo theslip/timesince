@@ -12,6 +12,7 @@ module.exports = (grunt) ->
           "app/config/routes.js"
           "public/scripts/*.js"
           "app/controllers/*.js"
+          "app/config/*.js"
           "server.js"
         ]
         tasks: "express:dev"
