@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-require('./app/config/routes')(app, differenceController, testController);
+require('./app/config/routes')(router, differenceController, testController);
 
 app.use(subdomain('timesince', router));
 app.listen(1337, '0.0.0.0', function() {
