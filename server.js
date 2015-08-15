@@ -7,7 +7,7 @@ var differenceController = require('./app/controllers/differenceController'),
 
 var enableCors = require('./app/config/cors');
 
-// app.use(enableCors);
+app.use(enableCors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
