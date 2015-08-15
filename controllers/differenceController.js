@@ -1,11 +1,21 @@
 var _ = require('lodash');
 var moment = require('moment');
-// var fs = require('fs');
-// var util = require('util');
+var bunyan = require('bunyan');
 var dateDifferenceModel = require('../models/dateDifferenceModel.js');
+
+var log = bunyan.createLogger({
+  name: 'differenceController',
+  streams: [{
+      type: 'rotating-file',
+      path: 'logs/differenceController.log',
+      period: '1d',
+      count: 1
+  }]
+});
 
 exports.getInputFromUser = function(req, res) {
   res.status(200);
+  var differenceLog = log.info(req);
   var dateOuput = '';
   var userInput = req.body.date;
   var dateDifferenceModel = getDifferenceBetweenDates(userInput);
@@ -41,5 +51,3 @@ var getDifferenceBetweenDates = function getDifferenceBetweenDates(userInput) {
   });
   return difference;
 };
-
-// fs.writeFileSync('./logs/getInputFromUser.txt', util.inspect(req.body) , 'utf-8');
