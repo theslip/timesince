@@ -1,4 +1,4 @@
 module.exports = function(router, differenceController, testController) {
-    router.post('/difference', differenceController.getInputFromUser);
-    router.get('/test', testController.getTestData);
+    router.post(__dirname + '/difference', differenceController.getInputFromUser);
+    router.get(__dirname + '/test', testController.getTestData);
 }
