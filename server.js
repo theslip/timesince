@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'timesince')));
-app.use('/public', express.static(__dirname + '/resources'));
+app.use('/public', express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
