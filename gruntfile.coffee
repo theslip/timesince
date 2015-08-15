@@ -24,7 +24,15 @@ module.exports = (grunt) ->
     cssmin:
       target:
         files: "resources/styles/site.min.css": "resources/styles/site.css"
+    jsbeautifier:
+      pretty:
+        src: "logs/*.log"
+        options:
+          json: 
+            indentSize: 3
 
+
+    grunt.loadNpmTasks "grunt-jsbeautifier"
     grunt.loadNpmTasks "grunt-express-server"
     grunt.loadNpmTasks "grunt-contrib-watch"
     grunt.loadNpmTasks "grunt-contrib-uglify"
@@ -37,4 +45,7 @@ module.exports = (grunt) ->
     grunt.registerTask "server", [
       "express:dev"
       "watch:express"
+    ]
+    grunt.registerTask "pretty", [
+      "jsbeautifier"
     ]

@@ -33,11 +33,13 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-express-server": "^0.5.1",
     "grunt-newer": "^1.1.1",
-    "lodash": "~3.10.1",
-    "moment": "~2.10.6"
+    "grunt-jsbeautifier": "~0.2.10"
   },
   "dependencies": {
     "express": "^4.13.3",
-    "body-parser": "~1.13.3"
+    "body-parser": "~1.13.3",
+    "moment": "~2.10.6",
+    "lodash": "~3.10.1",
+    "bunyan": "~1.4.0"
   }
 }
