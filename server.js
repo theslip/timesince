@@ -19,7 +19,7 @@ app.use('/public', express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 router.get('/', function(req, res){
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/app/views/index.html");
 });
 
 router.post('/difference', differenceController.getInputFromUser);
@@ -28,7 +28,7 @@ router.get('/test', testController.getTestData);
 app.use('/', router);
 
 app.use('*', function(req, res) {
-  res.sendFile(__dirname + "/public/404.html");
+  res.sendFile(__dirname + "/app/views/404.html");
 });
 
 
