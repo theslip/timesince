@@ -8,8 +8,8 @@ module.exports = (grunt) ->
     watch:
       express:
         files: [
-          "index.html"
-          "app/config/routes.js"
+          "app/views/*.html"
+          "app/config/*.js"
           "public/scripts/*.js"
           "app/controllers/*.js"
           "app/config/*.js"
