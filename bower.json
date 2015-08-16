@@ -1,0 +1,23 @@
+{
+  "name": "timesince",
+  "version": "0.0.1",
+  "homepage": "https://github.com/theslip/timesince",
+  "authors": [
+    "David <daverutsch@gmail.com>"
+  ],
+  "description": "timsince",
+  "main": "server.js",
+  "keywords": [
+    "diff",
+    "timediff",
+    "time",
+    "difference",
+    "time",
+    "since",
+    "timesince"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "jquery": "~2.1.4"
+  }
+}
