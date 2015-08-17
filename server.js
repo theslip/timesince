@@ -9,7 +9,7 @@ var differenceController  = require('./app/controllers/differenceController'),
 var port = app.set('port', process.env.PORT || 3000);
 
 var router = express.Router(),
-    routerTime = express.Router();
+    routerTimesince = express.Router();
 
 router.get('/', function(req, res) {
   res.send('home');
