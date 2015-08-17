@@ -19,12 +19,13 @@ router.get('/', function(req, res){
 
 require('./app/config/routes')(app, differenceController, testController);
 
+app.use('/',router);
+
 app.use('*', function(req, res) {
   res.status(404);
   res.sendFile(__dirname + '/app/views/404.html');
 });
 
-app.use(router);
 app.listen(3000, function() {
   console.log("I'm sorry, Dave. I'm afraid I can't do that.");
 });
