@@ -6,11 +6,6 @@ var differenceController  = require('./app/controllers/differenceController'),
     app                   = express(),
     router                = express.Router();
 
-var port = app.set('port', process.env.PORT || 3000);
-
-// var enableCors = require('./app/config/cors');
-
-// app.use(enableCors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -22,16 +17,13 @@ router.get('/*', function(req, res){
   res.sendFile(__dirname + "/app/views/index.html");
 });
 
-router.post('/difference', differenceController.getInputFromUser);
-router.get('/test', testController.getTestData);
+require('./app/config/routes')(app, differenceController, testController);
 
 app.use('*', function(req, res) {
   res.status(404);
   res.sendFile(__dirname + "/app/views/404.html");
 });
 
-require('./app/config/routes')(app, differenceController, testController);
-
-app.listen(app.get('port'), function() {
+app.listen(5436, function() {
   console.log("I'm sorry, Dave. I'm afraid I can't do that.");
 });
