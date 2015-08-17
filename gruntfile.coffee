@@ -18,7 +18,7 @@ module.exports = (grunt) ->
         tasks: "express:dev"
         options:
           spawn: false
-          livereload: true
+          livereload: 45729
       scripts:
         files: "public/scripts/*.js"
         tasks: "uglify"
