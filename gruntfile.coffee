@@ -1,19 +1,21 @@
 module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
+
     express:
       dev:
         options:
-          script: "server.js"
+          script: "./server.js"
     watch:
       express:
         files: [
-          "app/views/*.html"
-          "app/config/*.js"
-          "public/scripts/*.js"
-          "app/controllers/*.js"
-          "app/config/*.js"
-          "server.js"
+          "./gruntfile.coffee"
+          "./app/views/*.html"
+          "./app/config/*.js"
+          "./public/scripts/*.js"
+          "./app/controllers/*.js"
+          "./app/config/*.js"
+          "./server.js"
         ]
         tasks: "express:dev"
         options:
