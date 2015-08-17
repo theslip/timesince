@@ -1,9 +1,11 @@
 module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
+
     express:
       dev:
         options:
+          atBeing: true
           script: "server.js"
     watch:
       express:
@@ -18,7 +20,7 @@ module.exports = (grunt) ->
         tasks: "express:dev"
         options:
           spawn: false
-          livereload: 45729
+          livereload: true
       scripts:
         files: "public/scripts/*.js"
         tasks: "uglify"
@@ -50,7 +52,6 @@ module.exports = (grunt) ->
       "newer:cssmin"
     ]
     grunt.registerTask "server", [
-      "express:dev"
       "watch:express"
     ]
     grunt.registerTask "pretty", [
