@@ -3,6 +3,8 @@ var differenceController  = require('./app/controllers/differenceController'),
     bodyParser            = require('body-parser'),
     express               = require('express'),
     path                  = require('path'),
+    React                 = require('react'),
+    jsx                   = require('node-jsx'),
     app                   = express(),
     router                = express.Router();
 

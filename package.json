@@ -18,7 +18,11 @@
     "timediff",
     "time",
     "diff",
-    "duration"
+    "duration",
+    "node",
+    "nodejs",
+    "express",
+    "react"
   ],
   "author": "David Rutsch",
   "license": "ISC",
@@ -40,6 +44,8 @@
     "body-parser": "~1.13.3",
     "moment": "~2.10.6",
     "lodash": "~3.10.1",
-    "bunyan": "~1.4.0"
+    "bunyan": "~1.4.0",
+    "react": "~0.13.3",
+    "node-jsx": "~0.13.3"
   }
 }
