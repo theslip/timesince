@@ -1,5 +1,4 @@
 var differenceController  = require('./app/controllers/differenceController'),
-    testController        = require('./app/controllers/testController'),
     bodyParser            = require('body-parser'),
     express               = require('express'),
     path                  = require('path'),
@@ -17,7 +16,7 @@ router.get('/', function(req, res){
   res.sendFile(__dirname + '/app/views/index.html');
 });
 
-require('./app/config/routes')(app, differenceController, testController);
+require('./app/config/routes')(app, differenceController);
 
 app.use('/',router);
 
