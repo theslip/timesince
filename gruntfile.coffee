@@ -5,8 +5,7 @@ module.exports = (grunt) ->
     express:
       dev:
         options:
-          atBeing: true
-          script: "server.js"
+          script: "timesince.js"
     watch:
       express:
         files: [
@@ -15,7 +14,7 @@ module.exports = (grunt) ->
           "public/scripts/*.js"
           "app/controllers/*.js"
           "app/config/*.js"
-          "server.js"
+          "timesince.js"
         ]
         tasks: "express:dev"
         options:
@@ -40,7 +39,6 @@ module.exports = (grunt) ->
           json:
             indentSize: 3
 
-
     grunt.loadNpmTasks "grunt-jsbeautifier"
     grunt.loadNpmTasks "grunt-express-server"
     grunt.loadNpmTasks "grunt-contrib-watch"
@@ -52,6 +50,7 @@ module.exports = (grunt) ->
       "newer:cssmin"
     ]
     grunt.registerTask "server", [
+      "express:dev"
       "watch:express"
     ]
     grunt.registerTask "pretty", [
