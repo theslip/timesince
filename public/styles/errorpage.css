@@ -1,0 +1,48 @@
+@-ms-viewport {width: device-width;}
+@-o-viewport {width: device-width;}
+
+body {
+  background-color: #ecf0f1;
+  color: #373d40;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  margin-top: 20.5vh;
+  text-align: center;
+}
+
+.error-sub-heading, .error-text {
+  display: block;
+  font-weight: 300;
+}
+
+.error-heading {
+  -webkit-transition: all 1s ease-in;
+          transition: all 1s ease-in;
+  margin: 0;
+  font-weight: 400;
+  font-size: 16vw;
+  font-size: 31vmin;
+  line-height: 16vw;
+  line-height: 31vmin;
+}
+
+.error-sub-heading {
+  -webkit-transition: all 1s ease-in;
+          transition: all 1s ease-in;
+  color: #eb4b5e;
+  font-size: 1.5vw;
+  font-size: 3vmin;
+  line-height: 1.5vw;
+  line-height: 3vmin;
+}
+
+.error-text {
+  -webkit-transition: all 1s ease-in;
+          transition: all 1s ease-in;
+  font-size: 1.0vw;
+  font-size: 2.0vmin;
+  line-height: 3.0vw;
+  line-height: 6.0vmin;
+}
