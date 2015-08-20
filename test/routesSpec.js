@@ -45,7 +45,7 @@ describe('routes', function() {
 
   it('should respond to a GET request on the scripts folder with a 200 (OK) status', function(done) {
 
-    var testRoute = '/public/scripts/app.min.js';
+    var testRoute = '/public/scripts/clientApp.min.js';
     var expectedStatusCode = 200;
 
     superagent
