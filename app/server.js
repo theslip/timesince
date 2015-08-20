@@ -6,7 +6,6 @@ var server = function server(port) {
   this.app = express();
   this.router = express.Router();
   this.initializeConfig();
-
 };
 
 server.prototype.initializeConfig = function initializeConfig() {
