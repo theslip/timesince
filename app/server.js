@@ -5,7 +5,7 @@ var differenceController  = require('./controllers/differenceController'),
     app                   = express(),
     router                = express.Router();
 
-var createServer = function(port) {
+var server = function server() {
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,16 +20,22 @@ var createServer = function(port) {
 
   require('./config/routes')(app, differenceController);
 
-  app.use('/',router);
+  app.use('/', router);
 
   app.use(function(req, res) {
     res.status(404);
     res.sendFile(__dirname + '/views/404.html');
   });
 
-  app.listen(port, function() {
-    console.log("I'm sorry, Dave. I'm afraid I can't do that.");
-  });
+  server.prototype.destroy = function destroy() {
+    app.close();
+  };
+
+  server.prototype.start = function start(port) {
+    app.listen(port, function() {
+      console.log("I'm sorry, Dave. I'm afraid I can't do that.");
+    });
+  };
 };
 
-module.exports = createServer;
+module.exports = server;
