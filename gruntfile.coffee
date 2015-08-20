@@ -9,32 +9,33 @@ module.exports = (grunt) ->
     watch:
       express:
         files: [
-          "app/views/*.html"
-          "app/config/*.js"
-          "public/scripts/*.js"
-          "app/controllers/*.js"
-          "app/config/*.js"
-          "timesince.js"
+          "./app/views/*.html"
+          "./app/config/*.js"
+          "./public/scripts/*.js"
+          "./app/controllers/*.js"
+          "./app/config/*.js"
+          "./app/*.js"
+          "./timesince.js"
         ]
         tasks: "express:dev"
         options:
           spawn: false
           livereload: true
       scripts:
-        files: "public/scripts/*.js"
+        files: "./public/scripts/*.js"
         tasks: "uglify"
       styles:
-        files: "public/styles/site.css"
+        files: "./public/styles/site.css"
         tasks: "cssmin"
     uglify:
       target:
-        files: "public/scripts/app.min.js": "public/scripts/*.js"
+        files: "./public/scripts/app.min.js": "public/scripts/*.js"
     cssmin:
       target:
-        files: "public/styles/site.min.css": "public/styles/site.css"
+        files: "./public/styles/site.min.css": "public/styles/site.css"
     jsbeautifier:
       pretty:
-        src: "app/logs/*.log"
+        src: "./app/logs/*.log"
         options:
           json:
             indentSize: 3
