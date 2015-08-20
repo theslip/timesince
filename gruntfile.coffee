@@ -5,7 +5,7 @@ module.exports = (grunt) ->
     express:
       dev:
         options:
-          script: "timesince.js"
+          script: "./timesince.js"
     watch:
       express:
         files: [
