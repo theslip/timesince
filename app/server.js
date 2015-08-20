@@ -14,14 +14,12 @@ server.prototype.initializeConfig = function initializeConfig() {
   this.app.use('/', this.router);
 };
 
-server.prototype.destroy = function destroy() {
+server.prototype.stop = function stop() {
   this.serverInstance.close();
 };
 
 server.prototype.start = function start() {
-  this.serverInstance = this.app.listen(this.port, function() {
-    console.log("I'm sorry, Dave. I'm afraid I can't do that.");
-  });
+  this.serverInstance = this.app.listen(this.port);
 };
 
 module.exports = server;
