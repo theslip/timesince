@@ -5,39 +5,43 @@ module.exports = (grunt) ->
     express:
       dev:
         options:
-          script: "timesince.js"
+          script: "./timesince.js"
     watch:
       express:
         files: [
-          "app/views/*.html"
-          "app/config/*.js"
-          "public/scripts/*.js"
-          "app/controllers/*.js"
-          "app/config/*.js"
-          "timesince.js"
+          "./app/views/*.html"
+          "./app/config/*.js"
+          "./public/scripts/*.js"
+          "./app/controllers/*.js"
+          "./app/config/*.js"
+          "./app/*.js"
+          "./timesince.js"
         ]
         tasks: "express:dev"
         options:
           spawn: false
           livereload: true
       scripts:
-        files: "public/scripts/*.js"
+        files: "./public/scripts/*.js"
         tasks: "uglify"
       styles:
-        files: "public/styles/site.css"
+        files: "./public/styles/site.css"
         tasks: "cssmin"
+      logs:
+        files: "./app/logs/*.json"
+        tasks: "jsbeautifier:pretty"
     uglify:
       target:
-        files: "public/scripts/app.min.js": "public/scripts/*.js"
+        files: "./public/scripts/app.min.js": "public/scripts/*.js"
     cssmin:
       target:
-        files: "public/styles/site.min.css": "public/styles/site.css"
+        files: "./public/styles/site.min.css": "public/styles/site.css"
     jsbeautifier:
       pretty:
-        src: "app/logs/*.log"
+        src: "./app/logs/*.json"
         options:
           json:
-            indentSize: 3
+            indentSize: 2
 
     grunt.loadNpmTasks "grunt-jsbeautifier"
     grunt.loadNpmTasks "grunt-express-server"
@@ -51,7 +55,7 @@ module.exports = (grunt) ->
     ]
     grunt.registerTask "server", [
       "express:dev"
-      "watch:express"
+      "watch"
     ]
     grunt.registerTask "pretty", [
       "jsbeautifier"
