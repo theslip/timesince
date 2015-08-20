@@ -27,6 +27,9 @@ module.exports = (grunt) ->
       styles:
         files: "./public/styles/site.css"
         tasks: "cssmin"
+      logs:
+        files: "./app/logs/*.json"
+        tasks: "jsbeautifier:pretty"
     uglify:
       target:
         files: "./public/scripts/app.min.js": "public/scripts/*.js"
@@ -35,10 +38,10 @@ module.exports = (grunt) ->
         files: "./public/styles/site.min.css": "public/styles/site.css"
     jsbeautifier:
       pretty:
-        src: "./app/logs/*.log"
+        src: "./app/logs/*.json"
         options:
           json:
-            indentSize: 3
+            indentSize: 2
 
     grunt.loadNpmTasks "grunt-jsbeautifier"
     grunt.loadNpmTasks "grunt-express-server"
@@ -52,7 +55,7 @@ module.exports = (grunt) ->
     ]
     grunt.registerTask "server", [
       "express:dev"
-      "watch:express"
+      "watch"
     ]
     grunt.registerTask "pretty", [
       "jsbeautifier"
