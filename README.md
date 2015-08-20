@@ -1,3 +1,3 @@
 # timesince
 
-http://timesince.davidrutsch.com/
+http://sudoer.io
