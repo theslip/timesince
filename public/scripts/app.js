@@ -12,7 +12,7 @@ app.postUserInputToServer = function postUserInputToServer(dateEnteredByUser) {
       url: "/difference",
       type: "POST",
       data: JSON.stringify(dateEnteredByUser),
-      contentType: "application/json; charset=UTF-8",
+      contentType: "application/json",
       success: function(response) {
         app.successHandler(response);
         console.log(response);
