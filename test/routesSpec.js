@@ -20,12 +20,12 @@ describe('routes', function() {
   it('should respond to a GET request and return a 200 (OK) status', function(done) {
 
     var testRoute = rootUrl;
-    var expectedStatusCode = 404;
+    var expectedStatusCode = 200;
 
     superagent
       .get(testRoute)
       .end(function(error, response) {
-        assert.equal(response.status, 200, 'Status was not 200 (OK). Instead, it was ' + response.status);
+        assert.equal(response.status, expectedStatusCode, 'Status was not 200 (OK). Instead, it was ' + response.status);
         done();
       });
   });
@@ -71,13 +71,14 @@ describe('routes', function() {
 
   it('should respond to a POST request when hitting the difference controller with a 200 (OK) status', function(done) {
 
-    var testRoute = '/public/styles/site.min.css';
+    var testRoute = '/difference';
     var expectedStatusCode = 200;
 
     superagent
-      .get(rootUrl + testRoute)
+      .post(rootUrl + testRoute)
       .end(function(error, response) {
-        assert.equal(response.status, expectedStatusCode, 'Status was not ' + expectedStatusCode + ' (OK). Instead, it was ' + response.status);
+        console.log()
+        assert.equal(response.status, expectedStatusCode, 'Status was not 200 (OK). Instead, it was ' + response.status);
         done();
       });
   });
