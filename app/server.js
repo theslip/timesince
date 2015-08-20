@@ -1,33 +1,18 @@
-var differenceController  = require('./controllers/differenceController'),
-    express               = require('express'),
+var express               = require('express'),
     path                  = require('path');
-    app                   = express(),
-    router                = express.Router();
 
 var server = function server(port) {
   this.port = port;
+  this.app = express();
+  this.router = express.Router();
   this.initializeConfig();
+
 };
 
 server.prototype.initializeConfig = function initializeConfig() {
-
-  var serverConfig = require('./config/serverConfig')(app);
-
-  app.use('/public', express.static('./public'));
-  app.use('/bower_components', express.static('./bower_components'));
-
-  router.get('/', function(req, res){
-    res.sendFile(__dirname + '/views/index.html');
-  });
-
-  require('./config/routes')(app, differenceController);
-
-  app.use('/', router);
-
-  app.use(function(req, res) {
-    res.status(404);
-    res.sendFile(__dirname + '/views/404.html');
-  });
+  require('./config/serverConfig')(this.app);
+  require('./config/routes')(this.router);
+  this.app.use('/', this.router);
 };
 
 server.prototype.destroy = function destroy() {
@@ -35,7 +20,7 @@ server.prototype.destroy = function destroy() {
 };
 
 server.prototype.start = function start() {
-  this.serverInstance = app.listen(this.port, function() {
+  this.serverInstance = this.app.listen(this.port, function() {
     console.log("I'm sorry, Dave. I'm afraid I can't do that.");
   });
 };
