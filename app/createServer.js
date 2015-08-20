@@ -22,7 +22,7 @@ var createServer = function(port) {
 
   app.use('/',router);
 
-  app.use('*', function(req, res) {
+  app.use(function(req, res) {
     res.status(404);
     res.sendFile(__dirname + '/views/404.html');
   });
