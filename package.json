@@ -4,7 +4,7 @@
   "description": "http://timesince.davidrutsch.com/",
   "main": "server.js",
   "scripts": {
-    "test": "mocha test",
+    "test": "mocha -u tdd",
     "start": "node timesince.js"
   },
   "repository": {
@@ -37,7 +37,8 @@
     "mocha": "~2.2.5",
     "chai": "~3.2.0",
     "sinon": "~1.16.0",
-    "superagent": "~1.3.0"
+    "superagent": "~1.3.0",
+    "grunt-simple-mocha": "~0.4.0"
   },
   "dependencies": {
     "express": "^4.13.3",
