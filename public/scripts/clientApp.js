@@ -1,9 +1,7 @@
 var app = app || {};
 
 app.main = function main() {
-  var dateEnteredByUser = {
-    date: app.getDateFromInput()
-  }
+  var dateEnteredByUser = { date: app.getDateFromInput() }
   var resource = app.postUserInputToServer();
   resource('/difference', app.successHandler, dateEnteredByUser);
 };
@@ -13,17 +11,17 @@ app.postUserInputToServer = function postUserInputToServer() {
     var req = new XMLHttpRequest();
     req.open("POST", url, true);
     req.setRequestHeader('Content-type','application/json');
+
     req.addEventListener('readystatechange', function() {
-      if (req.status == 200) {
-        callback(req.responseText);
-      }
-      else {
-        callback(null, new Error("Request failed: " + req.statusText));
-      }
-    });
-    req.addEventListener("error", function() {
-      callback(null, new Error("Network error"));
-    });
+    if (req.status == 200) {
+      callback(req.responseText);
+    } else {
+      console.log('Request failed to send');
+    }
+  });
+  req.addEventListener("error", function() {
+    console.log('Server did not respond')
+  });
     dateEnteredByUser = JSON.stringify(dateEnteredByUser);
     req.send(dateEnteredByUser);
   };
@@ -31,9 +29,7 @@ app.postUserInputToServer = function postUserInputToServer() {
 };
 
 app.successHandler = function successHandler(response) {
-  console.log('inside');
   var differenceInput = document.getElementById('difference');
-  console.log(response);
   (response && response != '')
   ? app.showDifferenceInput(differenceInput, response)
   : app.hideDifferenceInput(differenceInput);
