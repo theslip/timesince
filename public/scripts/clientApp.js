@@ -1,60 +1,66 @@
-var scope = scope || {};
-var jsdom = require('jsdom');
-var window = jsdom.jsdom().createWindow();
-var $ = require('jquery')(window);
+var app = app || {};
 
-scope.main = function main() {
+app.main = function main() {
   var dateEnteredByUser = {
-    date: scope.getDateFromInput()
+    date: app.getDateFromInput()
   }
-  scope.postUserInputToServer(dateEnteredByUser);
+  var resource = app.postUserInputToServer();
+  resource('/difference', app.successHandler, dateEnteredByUser);
 };
 
-scope.postUserInputToServer = function postUserInputToServer(dateEnteredByUser) {
-  console.log('FUCK');
-  $.ajax({
-      url: "/difference",
-      type: "POST",
-      data: JSON.stringify(dateEnteredByUser),
-      contentType: "application/json",
-      success: function(response) {
-        scope.successHandler(response);
-        console.log(response);
-   }
-  });
+app.postUserInputToServer = function postUserInputToServer() {
+  function getURL(url, callback, dateEnteredByUser) {
+    var req = new XMLHttpRequest();
+    req.open("POST", url, true);
+    req.setRequestHeader('Content-type','application/json');
+    req.addEventListener('readystatechange', function() {
+      if (req.status == 200) {
+        callback(req.responseText);
+      }
+      else {
+        callback(null, new Error("Request failed: " + req.statusText));
+      }
+    });
+    req.addEventListener("error", function() {
+      callback(null, new Error("Network error"));
+    });
+    dateEnteredByUser = JSON.stringify(dateEnteredByUser);
+    req.send(dateEnteredByUser);
+  };
+  return getURL;
 };
 
-scope.successHandler = function successHandler(response) {
+app.successHandler = function successHandler(response) {
+  console.log('inside');
   var differenceInput = document.getElementById('difference');
+  console.log(response);
   (response && response != '')
-  ? scope.showDifferenceInput(differenceInput, response)
-  : scope.hideDifferenceInput(differenceInput);
+  ? app.showDifferenceInput(differenceInput, response)
+  : app.hideDifferenceInput(differenceInput);
 }
 
-scope.getDateFromInput = function getDateFromInput() {
-  var dateEnteredByUser = scope.getTextFromElement('date');
+app.getDateFromInput = function getDateFromInput() {
+  var dateEnteredByUser = app.getTextFromElement('date');
   dateEnteredByUser = new Date(dateEnteredByUser);
 
   return dateEnteredByUser;
 };
 
-scope.getTextFromElement = function getTextFromElement(name) {
+app.getTextFromElement = function getTextFromElement(name) {
   return document.getElementById(name).value;
 };
 
-scope.setTextInElement = function setTextInElement(elementName, text) {
+app.setTextInElement = function setTextInElement(elementName, text) {
   document.getElementById(elementName).value = text;
 };
 
-scope.showDifferenceInput = function showDifferenceInput(differenceInput, dateOuput) {
-  scope.setTextInElement('difference', dateOuput);
+app.showDifferenceInput = function showDifferenceInput(differenceInput, dateOuput) {
+  app.setTextInElement('difference', dateOuput);
   differenceInput.classList.add('cursor-text');
   differenceInput.classList.remove("invisible");
 };
 
-scope.hideDifferenceInput= function hideDifferenceInput(differenceInput) {
+app.hideDifferenceInput= function hideDifferenceInput(differenceInput) {
   differenceInput.classList.remove('cursor-text');
   differenceInput.classList.add("invisible");
 };
-
-module.exports = scope;
