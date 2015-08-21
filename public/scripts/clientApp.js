@@ -1,62 +1,64 @@
-var app = app || {};
+var App = (function() {
 
-app.main = function main() {
-  var dateEnteredByUser = { date: app.getDateFromInput() }
-  var resource = app.postUserInputToServer();
-  resource('/difference', app.successHandler, dateEnteredByUser);
-};
+  var app = function() {
+    var endPoint = '/difference';
 
-app.postUserInputToServer = function postUserInputToServer() {
-  function getURL(url, callback, dateEnteredByUser) {
-    var req = new XMLHttpRequest();
-    req.open("POST", url, true);
-    req.setRequestHeader('Content-type','application/json');
-
-    req.addEventListener('readystatechange', function() {
-    if (req.status == 200) {
-      callback(req.responseText);
-    } else {
-      console.log('Request failed to send');
-    }
-  });
-  req.addEventListener("error", function() {
-    console.log('Server did not respond')
-  });
-    dateEnteredByUser = JSON.stringify(dateEnteredByUser);
-    req.send(dateEnteredByUser);
+    this.main = function main() {
+      var dateEnteredByUser = { date: this.getDateFromInput() }
+      this.postUserInputToServer(endPoint, dateEnteredByUser);
+    };
+    this.getDateFromInput = function getDateFromInput() {
+      var dateEnteredByUser = getTextFromElement('date');
+      dateEnteredByUser = new Date(dateEnteredByUser);
+      return dateEnteredByUser;
+    };
   };
-  return getURL;
-};
 
-app.successHandler = function successHandler(response) {
-  var differenceInput = document.getElementById('difference');
-  (response && response != '')
-  ? app.showDifferenceInput(differenceInput, response)
-  : app.hideDifferenceInput(differenceInput);
-}
+  app.prototype.postUserInputToServer = function(url, dateEnteredByUser) {
+      var req = new XMLHttpRequest();
+      req.open("POST", url, true);
+      req.setRequestHeader('Content-type','application/json');
 
-app.getDateFromInput = function getDateFromInput() {
-  var dateEnteredByUser = app.getTextFromElement('date');
-  dateEnteredByUser = new Date(dateEnteredByUser);
+      req.addEventListener('readystatechange', function() {
+      if (req.status == 200) {
+        app.successHandler(req.responseText);
+      } else {
+        console.log('Request failed to send');
+      }
+    });
+    req.addEventListener("error", function() {
+      console.log('Server did not respond')
+    });
+      dateEnteredByUser = JSON.stringify(dateEnteredByUser);
+      req.send(dateEnteredByUser);
+  };
 
-  return dateEnteredByUser;
-};
+  app.prototype.successHandler = function(response) {
+    var differenceInput = document.getElementById('difference');
+    (response && response != '')
+    ? showInput(differenceInput, response)
+    : hideInput(differenceInput);
+  };
 
-app.getTextFromElement = function getTextFromElement(name) {
-  return document.getElementById(name).value;
-};
+  var getTextFromElement = function(elementName) {
+    return document.getElementById(elementName).value;
+  };
 
-app.setTextInElement = function setTextInElement(elementName, text) {
-  document.getElementById(elementName).value = text;
-};
+  var setTextInElement = function(elementName, text) {
+    document.getElementById(elementName).value = text;
+  };
 
-app.showDifferenceInput = function showDifferenceInput(differenceInput, dateOuput) {
-  app.setTextInElement('difference', dateOuput);
-  differenceInput.classList.add('cursor-text');
-  differenceInput.classList.remove("invisible");
-};
+  var showInput = function(differenceInput, dateOuput) {
+    setTextInElement('difference', dateOuput);
+    differenceInput.classList.add('cursor-text');
+    differenceInput.classList.remove("invisible");
+  };
 
-app.hideDifferenceInput= function hideDifferenceInput(differenceInput) {
-  differenceInput.classList.remove('cursor-text');
-  differenceInput.classList.add("invisible");
-};
+  var hideInput = function(differenceInput) {
+    differenceInput.classList.remove('cursor-text');
+    differenceInput.classList.add("invisible");
+  };
+  return app;
+})();
+
+// module.exports = App;
