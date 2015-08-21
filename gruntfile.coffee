@@ -27,6 +27,17 @@ module.exports = (grunt) ->
       styles:
         files: "./public/styles/site.css"
         tasks: "cssmin"
+      tests:
+        files: [
+          "./test/*.js"
+          "./app/config/*.js"
+          "./public/scripts/*.js"
+          "./app/controllers/*.js"
+          "./app/config/*.js"
+          "./app/*.js"
+          "./timesince.js"
+        ]
+        tasks: "simplemocha"
       logs:
         files: "./app/logs/*.json"
         tasks: "jsbeautifier:pretty"
@@ -42,7 +53,11 @@ module.exports = (grunt) ->
         options:
           json:
             indentSize: 2
+    simplemocha:
+      all:
+        src: "test/*.js"
 
+    grunt.loadNpmTasks "grunt-simple-mocha"
     grunt.loadNpmTasks "grunt-jsbeautifier"
     grunt.loadNpmTasks "grunt-express-server"
     grunt.loadNpmTasks "grunt-contrib-watch"
