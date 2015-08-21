@@ -21,7 +21,8 @@ function watchForEnterKeyOnDateInput(userInput) {
   userInput.onkeypress = function(event) {
     var keyCode = event.keyCode || event.which;
     if (keyCode == '13') {
-      scope.main();
+      var app = new App();
+      app.main();
     }
   }
 };
