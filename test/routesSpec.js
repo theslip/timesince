@@ -3,21 +3,23 @@ var assert = chai.assert;
 var Server = require('../app/server');
 var superagent = require('superagent');
 
-describe('routes', function() {
+describe('Routes', function() {
 
-  beforeEach(function() {
+  beforeEach(function(done) {
     domain = 'http://localhost:'
     port = 3001;
     rootUrl = domain + port;
     server = new Server(port);
     server.start();
+    done();
   });
 
-  afterEach(function() {
+  afterEach(function(done) {
     server.stop();
+    done();
   })
 
-  it('should respond to a GET request and return a 200 (OK) status', function(done) {
+  it('should respond to a GET request on "/" and return a 200 (OK) status', function(done) {
 
     var testRoute = rootUrl;
     var expectedStatusCode = 200;
@@ -30,7 +32,7 @@ describe('routes', function() {
       });
   });
 
-  it('should respond to a GET request on a non-existent with a 404 (Not Found) status', function(done) {
+  it('should respond to a GET request on a non-existent page with a 404 (Not Found) status', function(done) {
 
     var testRoute = '/idontexistatall'
     var expectedStatusCode = 404;
