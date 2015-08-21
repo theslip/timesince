@@ -43,7 +43,10 @@ module.exports = (grunt) ->
         tasks: "jsbeautifier:pretty"
     uglify:
       target:
-        files: "./public/scripts/clientApp.min.js": "public/scripts/*.js"
+        files: "./public/scripts/app.min.js": [
+          "./public/scripts/clientApp.js"
+          "./public/scripts/listeners.js"
+        ]
     cssmin:
       target:
         files: "./public/styles/site.min.css": "public/styles/site.css"
