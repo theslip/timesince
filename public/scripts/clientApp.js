@@ -15,10 +15,10 @@ var App = (function() {
   };
 
   app.prototype.postUserInputToServer = function(url, dateEnteredByUser) {
+      var app = new App();
       var req = new XMLHttpRequest();
       req.open("POST", url, true);
       req.setRequestHeader('Content-type','application/json');
-
       req.addEventListener('readystatechange', function() {
       if (req.status == 200) {
         app.successHandler(req.responseText);
@@ -60,5 +60,3 @@ var App = (function() {
   };
   return app;
 })();
-
-// module.exports = App;
