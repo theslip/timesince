@@ -8,7 +8,7 @@ var App = (function() {
       this.postUserInputToServer(endPoint, dateEnteredByUser);
     };
     this.getDateFromInput = function getDateFromInput() {
-      var dateEnteredByUser = getTextFromElement('date');
+      var dateEnteredByUser = app.getTextFromElement('date');
       dateEnteredByUser = new Date(dateEnteredByUser);
       return dateEnteredByUser;
     };
@@ -36,25 +36,25 @@ var App = (function() {
   app.prototype.successHandler = function(response) {
     var differenceInput = document.getElementById('difference');
     (response && response != '')
-    ? showInput(differenceInput, response)
-    : hideInput(differenceInput);
+    ? app.showInput(differenceInput, response)
+    : app.hideInput(differenceInput);
   };
 
-  var getTextFromElement = function(elementName) {
+  app.getTextFromElement = function(elementName) {
     return document.getElementById(elementName).value;
   };
 
-  var setTextInElement = function(elementName, text) {
+  app.setTextInElement = function(elementName, text) {
     document.getElementById(elementName).value = text;
   };
 
-  var showInput = function(differenceInput, dateOuput) {
-    setTextInElement('difference', dateOuput);
+  app.showInput = function(differenceInput, dateOuput) {
+    app.setTextInElement('difference', dateOuput);
     differenceInput.classList.add('cursor-text');
     differenceInput.classList.remove("invisible");
   };
 
-  var hideInput = function(differenceInput) {
+  app.hideInput = function(differenceInput) {
     differenceInput.classList.remove('cursor-text');
     differenceInput.classList.add("invisible");
   };
