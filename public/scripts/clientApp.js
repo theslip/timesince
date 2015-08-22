@@ -1,11 +1,11 @@
-var App = (function() {
+App = (function() {
 
   var app = function() {
     var endPoint = '/difference';
 
     this.main = function main() {
       var dateEnteredByUser = { date: this.getDateFromInput() }
-      this.postUserInputToServer(endPoint, dateEnteredByUser);
+      this.postUserInputToServer(endPoint, dateEnteredByUser, this.successHandler);
     };
     this.getDateFromInput = function getDateFromInput() {
       var dateEnteredByUser = app.getTextFromElement('date');
@@ -14,14 +14,16 @@ var App = (function() {
     };
   };
 
-  app.prototype.postUserInputToServer = function(url, dateEnteredByUser) {
+  app.prototype.postUserInputToServer = function(url, dateEnteredByUser, callback) {
+      console.log(dateEnteredByUser);
       var app = new App();
       var req = new XMLHttpRequest();
       req.open("POST", url, true);
       req.setRequestHeader('Content-type','application/json');
       req.addEventListener('readystatechange', function() {
-      if (req.status == 200) {
-        app.successHandler(req.responseText);
+      if (req.status == 200 && req.readyState == 4) {
+        console.log('success');
+        callback(req.responseText);
       } else {
         console.log('Request failed to send');
       }
