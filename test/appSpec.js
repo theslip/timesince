@@ -8,8 +8,10 @@ global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
 
 beforeEach(function() {
   var requests = this.requests = [];
+
   this.clientApplication = sinon.spy(app, 'postUserInputToServer');
   this.xhr = sinon.useFakeXMLHttpRequest();
+  
   this.xhr.onCreate = function (xhr) {
     requests.push(xhr);
   };
@@ -36,7 +38,7 @@ describe('App', function() {
     var expectedResponseData = testResponseData;
 
     this.clientApplication(testRoute, date, callback);
-    assert.equal(expectedLength, this.requests.length, 'The number of requests is wrong');
+    assert.equal(expectedLength, this.requests.length, 'The number of requests is wrong!');
 
     var request = this.requests[0];
     request.respond(200, testHeader, testResponseData);

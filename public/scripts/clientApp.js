@@ -7,6 +7,7 @@ App = (function() {
       var dateEnteredByUser = { date: this.getDateFromInput() }
       this.postUserInputToServer(endPoint, dateEnteredByUser, this.successHandler);
     };
+
     this.getDateFromInput = function getDateFromInput() {
       var dateEnteredByUser = app.getTextFromElement('date');
       dateEnteredByUser = new Date(dateEnteredByUser);
@@ -15,31 +16,34 @@ App = (function() {
   };
 
   app.prototype.postUserInputToServer = function(url, dateEnteredByUser, callback) {
-      console.log(dateEnteredByUser);
-      var app = new App();
-      var req = new XMLHttpRequest();
-      req.open("POST", url, true);
-      req.setRequestHeader('Content-type','application/json');
-      req.addEventListener('readystatechange', function() {
+    var app = new App();
+    var req = new XMLHttpRequest();
+
+    req.open("POST", url, true);
+    req.setRequestHeader('Content-type','application/json');
+
+    req.addEventListener('readystatechange', function() {
       if (req.status == 200 && req.readyState == 4) {
-        console.log('success');
         callback(req.responseText);
       } else {
         console.log('Request failed to send');
       }
     });
+
     req.addEventListener("error", function() {
       console.log('Server did not respond')
     });
-      dateEnteredByUser = JSON.stringify(dateEnteredByUser);
-      req.send(dateEnteredByUser);
+
+    dateEnteredByUser = JSON.stringify(dateEnteredByUser);
+    req.send(dateEnteredByUser);
   };
 
   app.prototype.successHandler = function(response) {
     var differenceInput = document.getElementById('difference');
-    (response && response != '')
-    ? app.showInput(differenceInput, response)
-    : app.hideInput(differenceInput);
+
+    response
+      ? app.showInput(differenceInput, response)
+      : app.hideInput(differenceInput);
   };
 
   app.getTextFromElement = function(elementName) {
@@ -60,5 +64,6 @@ App = (function() {
     differenceInput.classList.remove('cursor-text');
     differenceInput.classList.add("invisible");
   };
+
   return app;
 })();
