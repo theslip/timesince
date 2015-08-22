@@ -1,14 +1,15 @@
 var chai = require('chai');
 var assert = chai.assert;
 var sinon = require('sinon');
-var clientApp = require('../public/scripts/clientApp');
-global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
+var clientApplication = require('../public/scripts/clientApp');
 var app = new App();
 
+global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
+
 beforeEach(function() {
-  this.spyApp = sinon.spy(app, 'postUserInputToServer');
-  this.xhr = sinon.useFakeXMLHttpRequest();
   var requests = this.requests = [];
+  this.clientApplication = sinon.spy(app, 'postUserInputToServer');
+  this.xhr = sinon.useFakeXMLHttpRequest();
   this.xhr.onCreate = function (xhr) {
     requests.push(xhr);
   };
@@ -16,7 +17,7 @@ beforeEach(function() {
 
 afterEach(function () {
   this.xhr.restore();
-  this.spyApp.restore();
+  this.clientApplication.restore();
 });
 
 describe('App', function() {
@@ -29,11 +30,16 @@ describe('App', function() {
     var date = new Date(testUserInput);
     var testResponseData = '[{ "data": "test" }]';
     var testHeader = '{ "Content-Type": "application/json" }';
+    var request;
 
-    this.spyApp(testRoute, date, callback);
-    assert.equal(1, this.requests.length, 'Same length!');
-    this.requests[0].respond(200, testHeader, testResponseData);
-    sinon.assert.calledWith(callback, testResponseData);
+    var expectedLength = 1;
+    var expectedResponseData = testResponseData;
 
+    this.clientApplication(testRoute, date, callback);
+    assert.equal(expectedLength, this.requests.length, 'The number of requests is wrong');
+
+    var request = this.requests[0];
+    request.respond(200, testHeader, testResponseData);
+    sinon.assert.calledWith(callback, expectedResponseData);
   });
 });
