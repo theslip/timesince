@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function domOnLoad() {
 },false);
 
 function onDomReady() {
-  var differenceInput = document.getElementById('difference');
+  var differenceInputField = document.getElementById('difference');
   var dateInput = document.getElementById('date');
 
   dateInput.focus();
-  differenceInput.disabled = true;
-  differenceInput.classList.add('invisible');
+  differenceInputField.disabled = true;
+  differenceInputField.classList.add('invisible');
   watchForEnterKeyOnDateInput(dateInput)
 };
 

@@ -45,11 +45,9 @@ var getDifferenceBetweenDates = function getDifferenceBetweenDates(userInput) {
   _.each(unitOfTime, function(unit, index) {
     var dateDifference = new dateDifferenceModel(unit, currentTime, userDate);
     if (_.isUndefined(dateDifference.time)) {
-      
       return;
     }
     difference.push(dateDifference);
   });
-
   return difference;
 };

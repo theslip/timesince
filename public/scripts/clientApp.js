@@ -1,11 +1,11 @@
 App = (function() {
 
   var app = function() {
-    var endPoint = '/difference';
+    var END_POINT = '/difference';
 
     this.main = function main() {
       var dateEnteredByUser = { date: this.getDateFromInput() }
-      this.postUserInputToServer(endPoint, dateEnteredByUser, this.successHandler);
+      this.postUserInputToServer(END_POINT, dateEnteredByUser, this.successHandler);
     };
 
     this.getDateFromInput = function getDateFromInput() {
@@ -19,18 +19,18 @@ App = (function() {
     var app = new App();
     var req = new XMLHttpRequest();
 
-    req.open("POST", url, true);
+    req.open('POST', url, true);
     req.setRequestHeader('Content-type','application/json');
 
     req.addEventListener('readystatechange', function() {
-      if (req.status == 200 && req.readyState == 4) {
+      if (req.status == 200) {
         callback(req.responseText);
       } else {
         console.log('Request failed to send');
       }
     });
 
-    req.addEventListener("error", function() {
+    req.addEventListener('error', function() {
       console.log('Server did not respond')
     });
 
@@ -39,11 +39,11 @@ App = (function() {
   };
 
   app.prototype.successHandler = function(response) {
-    var differenceInput = document.getElementById('difference');
+    var differenceInputField = document.getElementById('difference');
 
     response
-      ? app.showInput(differenceInput, response)
-      : app.hideInput(differenceInput);
+      ? app.showInput(differenceInputField, response)
+      : app.hideInput(differenceInputField);
   };
 
   app.getTextFromElement = function(elementName) {
@@ -54,15 +54,15 @@ App = (function() {
     document.getElementById(elementName).value = text;
   };
 
-  app.showInput = function(differenceInput, dateOuput) {
+  app.showInput = function(differenceInputField, dateOuput) {
     app.setTextInElement('difference', dateOuput);
-    differenceInput.classList.add('cursor-text');
-    differenceInput.classList.remove("invisible");
+    differenceInputField.classList.add('cursor-text');
+    differenceInputField.classList.remove('invisible');
   };
 
-  app.hideInput = function(differenceInput) {
-    differenceInput.classList.remove('cursor-text');
-    differenceInput.classList.add("invisible");
+  app.hideInput = function(differenceInputField) {
+    differenceInputField.classList.remove('cursor-text');
+    differenceInputField.classList.add('invisible');
   };
 
   return app;

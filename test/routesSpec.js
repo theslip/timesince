@@ -4,24 +4,22 @@ var Server = require('../app/server');
 var superagent = require('superagent');
 
 describe('Routes', function() {
+  var DOMAIN = 'http://localhost:'
+  var PORT = 3001;
+  var ROOT_URL = DOMAIN + PORT;
 
-  beforeEach(function(done) {
-    domain = 'http://localhost:'
-    port = 3001;
-    rootUrl = domain + port;
-    server = new Server(port);
-    server.start();
-    done();
+  beforeEach(function() {
+    this.server = new Server(PORT);
+    this.server.start();
   });
 
-  afterEach(function(done) {
-    server.stop();
-    done();
+  afterEach(function() {
+    this.server.stop();
   })
 
   it('should respond to a GET request on "/" and return a 200 (OK) status', function(done) {
 
-  var testRoute = rootUrl;
+  var testRoute = ROOT_URL;
   var expectedStatusCode = 200;
 
   superagent
@@ -38,7 +36,7 @@ describe('Routes', function() {
   var expectedStatusCode = 404;
 
   superagent
-    .get(rootUrl + testRoute)
+    .get(ROOT_URL + testRoute)
     .end(function(error, response) {
       assert.equal(response.status, expectedStatusCode, 'Status was not ' + expectedStatusCode + ' (Not Found). Instead, it was ' + response.status);
       done();
@@ -51,7 +49,7 @@ describe('Routes', function() {
   var expectedStatusCode = 200;
 
   superagent
-    .get(rootUrl + testRoute)
+    .get(ROOT_URL + testRoute)
     .end(function(error, response) {
       assert.equal(response.status, expectedStatusCode, 'Status was not ' + expectedStatusCode + ' (OK). Instead, it was ' + response.status);
       done();
@@ -64,7 +62,7 @@ describe('Routes', function() {
   var expectedStatusCode = 200;
 
   superagent
-    .get(rootUrl + testRoute)
+    .get(ROOT_URL + testRoute)
     .end(function(error, response) {
       assert.equal(response.status, expectedStatusCode, 'Status was not ' + expectedStatusCode + ' (OK). Instead, it was ' + response.status);
       done();
@@ -77,7 +75,7 @@ describe('Routes', function() {
   var expectedStatusCode = 200;
 
   superagent
-    .post(rootUrl + testRoute)
+    .post(ROOT_URL + testRoute)
     .end(function(error, response) {
       console.log()
       assert.equal(response.status, expectedStatusCode, 'Status was not 200 (OK). Instead, it was ' + response.status);
