@@ -25,8 +25,6 @@ App = (function() {
     req.addEventListener('readystatechange', function() {
       if (req.status == 200) {
         callback(req.responseText);
-      } else {
-        console.log('Request failed to send');
       }
     });
 
@@ -64,6 +62,5 @@ App = (function() {
     differenceInputField.classList.remove('cursor-text');
     differenceInputField.classList.add('invisible');
   };
-
   return app;
 })();
