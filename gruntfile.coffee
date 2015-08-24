@@ -27,7 +27,7 @@ module.exports = (grunt) ->
       styles:
         files: "./public/styles/site.css"
         tasks: "cssmin"
-      tests:
+      validate:
         files: [
           "./test/*.js"
           "./app/config/*.js"
@@ -37,7 +37,10 @@ module.exports = (grunt) ->
           "./app/*.js"
           "./timesince.js"
         ]
-        tasks: "simplemocha"
+        tasks: [
+          "simplemocha"
+          "eslint"
+        ]
       logs:
         files: "./app/logs/*.json"
         tasks: "jsbeautifier:pretty"
@@ -59,7 +62,19 @@ module.exports = (grunt) ->
     simplemocha:
       all:
         src: "test/*.js"
+    eslint:
+      options:
+        configFile: ".eslintrc"
+      target: [
+        "./app/config/*.js"
+        "./public/scripts/*.js"
+        "./app/controllers/*.js"
+        "./app/config/*.js"
+        "./app/*.js"
+        "./timesince.js"
+      ]
 
+    grunt.loadNpmTasks "grunt-eslint"
     grunt.loadNpmTasks "grunt-simple-mocha"
     grunt.loadNpmTasks "grunt-jsbeautifier"
     grunt.loadNpmTasks "grunt-express-server"
@@ -67,6 +82,7 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-contrib-uglify"
     grunt.loadNpmTasks "grunt-contrib-cssmin"
     grunt.loadNpmTasks "grunt-newer"
+
     grunt.registerTask "default", [
       "newer:uglify"
       "newer:cssmin"
