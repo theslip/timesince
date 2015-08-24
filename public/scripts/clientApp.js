@@ -1,6 +1,8 @@
-App = (function() {
+'use strict';
 
-  var app = function() {
+var App = (function App() {
+
+  var app = function app() {
     var END_POINT = '/difference';
 
     this.main = function main() {
@@ -11,6 +13,7 @@ App = (function() {
     this.getDateFromInput = function getDateFromInput() {
       var dateEnteredByUser = app.getTextFromElement('date');
       dateEnteredByUser = new Date(dateEnteredByUser);
+
       return dateEnteredByUser;
     };
   };
@@ -62,5 +65,6 @@ App = (function() {
     differenceInputField.classList.remove('cursor-text');
     differenceInputField.classList.add('invisible');
   };
+
   return app;
 })();
