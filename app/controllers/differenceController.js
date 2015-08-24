@@ -1,3 +1,6 @@
+/*eslint-env node, node */
+'use strict';
+
 var _ = require('lodash');
 var moment = require('moment');
 var bunyan = require('bunyan');

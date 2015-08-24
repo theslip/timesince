@@ -1,3 +1,6 @@
+/*eslint-env node, node */
+'use strict';
+
 var express = require('express');
 var path = require('path');
 
