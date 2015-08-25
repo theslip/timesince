@@ -1,3 +1,4 @@
+/* exported App */
 'use strict';
 
 var App = (function App() {
@@ -6,7 +7,7 @@ var App = (function App() {
     var END_POINT = '/difference';
 
     this.main = function main() {
-      var dateEnteredByUser = { date: this.getDateFromInput() }
+      var dateEnteredByUser = { date: this.getDateFromInput() };
       this.postUserInputToServer(END_POINT, dateEnteredByUser, this.successHandler);
     };
 
@@ -19,7 +20,6 @@ var App = (function App() {
   };
 
   app.prototype.postUserInputToServer = function(url, dateEnteredByUser, callback) {
-    var app = new App();
     var req = new XMLHttpRequest();
 
     req.open('POST', url, true);
@@ -32,7 +32,7 @@ var App = (function App() {
     });
 
     req.addEventListener('error', function() {
-      console.log('Server did not respond')
+      alert('Server did not respond');
     });
 
     dateEnteredByUser = JSON.stringify(dateEnteredByUser);

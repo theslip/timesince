@@ -1,10 +1,13 @@
+/*eslint-env node, node */
+/*eslint-env node, mocha */
+
 var chai = require('chai');
 var assert = chai.assert;
 var Server = require('../app/server');
 var superagent = require('superagent');
 
 describe('Routes', function() {
-  var DOMAIN = 'http://localhost:'
+  var DOMAIN = 'http://localhost:';
   var PORT = 3001;
   var ROOT_URL = DOMAIN + PORT;
 

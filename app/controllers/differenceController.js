@@ -9,16 +9,16 @@ var dateDifferenceModel = require('../models/dateDifferenceModel.js');
 var log = bunyan.createLogger({
   name: 'differenceControllerLog',
   streams: [{
-      type: 'rotating-file',
-      path: './app/logs/differenceController.json',
-      period: '1d',
-      count: 1
+    type: 'rotating-file',
+    path: './app/logs/differenceController.json',
+    period: '1d',
+    count: 1
   }]
 });
 
 exports.getInputFromUser = function(req, res) {
   res.status(200);
-  var differenceLog = log.info(req);
+  log.info(req);
   var dateOuput = '';
   var userInput = req.body.date;
   var dateDifferenceModel = getDifferenceBetweenDates(userInput);
@@ -45,7 +45,7 @@ var getDifferenceBetweenDates = function getDifferenceBetweenDates(userInput) {
     'minutes'
   ];
 
-  _.each(unitOfTime, function(unit, index) {
+  _.each(unitOfTime, function(unit) {
     var dateDifference = new dateDifferenceModel(unit, currentTime, userDate);
     if (_.isUndefined(dateDifference.time)) {
       return;

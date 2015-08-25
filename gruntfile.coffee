@@ -36,6 +36,7 @@ module.exports = (grunt) ->
           "./app/config/*.js"
           "./app/*.js"
           "./timesince.js"
+          "./test/*.js"
         ]
         tasks: [
           "simplemocha"

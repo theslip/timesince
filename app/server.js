@@ -2,7 +2,6 @@
 'use strict';
 
 var express = require('express');
-var path = require('path');
 
 var server = function server(port) {
   this.port = port;

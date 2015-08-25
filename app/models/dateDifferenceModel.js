@@ -2,7 +2,6 @@
 'use strict';
 
 var moment = require('moment');
-var _ = require('lodash');
 
 var dateDifferenceModel = function dateDifferenceModel(name, date1, date2) {
   this.name = name;

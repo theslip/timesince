@@ -1,7 +1,11 @@
+/*eslint-env node, node */
+/*eslint-env node, mocha */
+
 var chai = require('chai');
 var assert = chai.assert;
 var sinon = require('sinon');
 var clientApplication = require('../public/scripts/clientApp');
+console.log(global.clientApp);
 var app = new App();
 
 global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
@@ -39,7 +43,7 @@ describe('App', function() {
     this.clientApplication(testRoute, date, callback);
     assert.equal(expectedLength, this.requests.length, 'The number of requests is wrong!');
 
-    var request = this.requests[0];
+    request = this.requests[0];
     request.respond(200, testHeader, testResponseData);
     sinon.assert.calledWith(callback, expectedResponseData);
   });
