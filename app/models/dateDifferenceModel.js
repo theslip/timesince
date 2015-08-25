@@ -1,11 +1,13 @@
+/*eslint-env node, node */
+'use strict';
+
 var moment = require('moment');
-var _ = require('lodash');
 
 var dateDifferenceModel = function dateDifferenceModel(name, date1, date2) {
   this.name = name;
   this.date1 = date1;
   this.date2 = date2;
-  this.time = this.addDifference(this.date1, this.date2, name);
+  this.time = this.addDifference(this.date1, this.date2, this.name);
 };
 
 dateDifferenceModel.prototype.addDifference = function addDifference(date1, date2, unitOfTime) {

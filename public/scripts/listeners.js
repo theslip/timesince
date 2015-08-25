@@ -1,31 +1,37 @@
-document.addEventListener('DOMContentLoaded', function domOnLoad() {
-  document.removeEventListener('DOMContentLoaded', domOnLoad, false);
-  onDomReady();
-},false);
+'use strict';
 
-window.addEventListener('load', function windowOnLoad() {
-  window.removeEventListener('load', windowOnLoad, false);
-  fadeWebPageIn();
-},false);
+(function ListenerModule() {
 
-function onDomReady() {
-  var differenceInput = document.getElementById('difference');
-  var dateInput = document.getElementById('date');
-  dateInput.focus();
-  differenceInput.disabled = true;
-  differenceInput.classList.add('invisible');
-  watchForEnterKeyOnDateInput(dateInput)
-};
+  document.addEventListener('DOMContentLoaded', function domOnLoad() {
+    document.removeEventListener('DOMContentLoaded', domOnLoad, false);
+    onDomReady();
+    fadeWebPageIn();
+  },false);
 
-function watchForEnterKeyOnDateInput(userInput) {
-  userInput.onkeypress = function(event) {
-    var keyCode = event.keyCode || event.which;
-    if (keyCode == '13') {
-      app.main();
-    }
-  }
-};
+  var onDomReady = function onDomReady() {
+    var differenceInputField = document.getElementById('difference');
+    var dateInput = document.getElementById('date');
 
-function fadeWebPageIn() {
-  document.body.classList.add('visible');
-}
+    dateInput.focus();
+    differenceInputField.disabled = true;
+    differenceInputField.classList.add('invisible');
+    watchForEnterKeyOnDateInput(dateInput);
+  };
+
+  var watchForEnterKeyOnDateInput = function watchForEnterKeyOnDateInput(userInput) {
+    var app;
+
+    userInput.onkeypress = function(event) {
+      var keyCode = event.keyCode || event.which;
+      if (keyCode == '13') {
+        console.log(ClientModule);
+        app.main();
+      }
+    };
+  };
+
+  var fadeWebPageIn = function fadeWebPageIn() {
+    document.body.classList.add('visible');
+  };
+
+})();
