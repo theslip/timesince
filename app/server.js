@@ -1,27 +1,28 @@
-/*eslint-env node, node */
-'use strict';
+/* eslint-env node, node */
+'use strict'
 
-var express = require('express');
+var express = require('express')
 
-var server = function server(port) {
-  this.port = port;
-  this.app = express();
-  this.router = express.Router();
-  this.initialize();
-};
+var startServer = function server (port) {
+  var app = express()
+  var router = express.Router()
+  var serverInstance
 
-server.prototype.initialize = function initialize() {
-  require('./config/serverConfig')(this.app);
-  require('./config/routes')(this.router);
-  this.app.use('/', this.router);
-};
+  var initialize = function initialize () {
+    require('./config/serverConfig')(app)
+    require('./config/routes')(router)
+    app.use('/', router)
+    serverInstance = app.listen(port)
+  }
 
-server.prototype.stop = function stop() {
-  this.serverInstance.close();
-};
+  initialize()
 
-server.prototype.start = function start() {
-  this.serverInstance = this.app.listen(this.port);
-};
+  return {
+    stop: function stop () {
+      serverInstance.close()
+    }
+  }
 
-module.exports = server;
+}
+
+module.exports = startServer
