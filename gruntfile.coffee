@@ -63,19 +63,7 @@ module.exports = (grunt) ->
     simplemocha:
       all:
         src: "test/*.js"
-    eslint:
-      options:
-        configFile: ".eslintrc"
-      target: [
-        "./app/config/*.js"
-        "./public/scripts/*.js"
-        "./app/controllers/*.js"
-        "./app/config/*.js"
-        "./app/*.js"
-        "./timesince.js"
-      ]
 
-    grunt.loadNpmTasks "grunt-eslint"
     grunt.loadNpmTasks "grunt-simple-mocha"
     grunt.loadNpmTasks "grunt-jsbeautifier"
     grunt.loadNpmTasks "grunt-express-server"
