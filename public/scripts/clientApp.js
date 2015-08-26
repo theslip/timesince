@@ -1,25 +1,18 @@
 /* exported App */
 'use strict';
 
-var App = (function App() {
+var ClientModule = (function ClientModule() {
 
-  var app = function app() {
-    var END_POINT = '/difference';
+  var END_POINT = '/difference';
 
-    this.main = function main() {
-      var dateEnteredByUser = { date: this.getDateFromInput() };
-      this.postUserInputToServer(END_POINT, dateEnteredByUser, this.successHandler);
-    };
+  var getDateFromInput = function getDateFromInput() {
+    var dateEnteredByUser = getTextFromElement('date');
+    dateEnteredByUser = new Date(dateEnteredByUser);
 
-    this.getDateFromInput = function getDateFromInput() {
-      var dateEnteredByUser = app.getTextFromElement('date');
-      dateEnteredByUser = new Date(dateEnteredByUser);
-
-      return dateEnteredByUser;
-    };
+    return dateEnteredByUser;
   };
 
-  app.prototype.postUserInputToServer = function(url, dateEnteredByUser, callback) {
+  var postUserInputToServer = function(url, dateEnteredByUser, callback) {
     var req = new XMLHttpRequest();
 
     req.open('POST', url, true);
@@ -39,32 +32,37 @@ var App = (function App() {
     req.send(dateEnteredByUser);
   };
 
-  app.prototype.successHandler = function(response) {
+  var successHandler = function(response) {
     var differenceInputField = document.getElementById('difference');
 
     response
-      ? app.showInput(differenceInputField, response)
-      : app.hideInput(differenceInputField);
+      ? showInput(differenceInputField, response)
+      : hideInput(differenceInputField);
   };
 
-  app.getTextFromElement = function(elementName) {
+  var getTextFromElement = function(elementName) {
     return document.getElementById(elementName).value;
   };
 
-  app.setTextInElement = function(elementName, text) {
+  var setTextInElement = function(elementName, text) {
     document.getElementById(elementName).value = text;
   };
 
-  app.showInput = function(differenceInputField, dateOuput) {
-    app.setTextInElement('difference', dateOuput);
+  var showInput = function(differenceInputField, dateOuput) {
+    setTextInElement('difference', dateOuput);
     differenceInputField.classList.add('cursor-text');
     differenceInputField.classList.remove('invisible');
   };
 
-  app.hideInput = function(differenceInputField) {
+  var hideInput = function(differenceInputField) {
     differenceInputField.classList.remove('cursor-text');
     differenceInputField.classList.add('invisible');
   };
 
-  return app;
+  return {
+    main: function main() {
+      var dateEnteredByUser = { date: getDateFromInput() };
+      postUserInputToServer(END_POINT, dateEnteredByUser, successHandler);
+    }
+  }
 })();

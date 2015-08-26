@@ -1,6 +1,6 @@
 'use strict';
 
-(function ListenerModule() {
+(function ListenerModule(app) {
 
   document.addEventListener('DOMContentLoaded', function domOnLoad() {
     document.removeEventListener('DOMContentLoaded', domOnLoad, false);
@@ -19,12 +19,11 @@
   };
 
   var watchForEnterKeyOnDateInput = function watchForEnterKeyOnDateInput(userInput) {
-    var app;
 
     userInput.onkeypress = function(event) {
       var keyCode = event.keyCode || event.which;
       if (keyCode == '13') {
-        console.log(ClientModule);
+        console.log(app);
         app.main();
       }
     };
@@ -34,4 +33,4 @@
     document.body.classList.add('visible');
   };
 
-})();
+})(ClientModule);
