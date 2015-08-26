@@ -27,7 +27,7 @@ describe('Routes', function () {
 
     request
       .get(testRoute)
-      .end(function(error, response) {
+      .end(function (error, response) {
         assert.equal(response.status, expectedStatusCode, 'Status was not 200 (OK). Instead, it was ' + response.status)
         done()
       })
@@ -40,7 +40,7 @@ describe('Routes', function () {
 
     request
       .get(ROOT_URL + testRoute)
-      .end(function(error, response) {
+      .end(function (error, response) {
         assert.equal(response.status, expectedStatusCode, 'Status was not ' + expectedStatusCode + ' (Not Found). Instead, it was ' + response.status)
         done()
       })
@@ -53,7 +53,7 @@ describe('Routes', function () {
 
     request
       .get(ROOT_URL + testRoute)
-      .end(function(error, response) {
+      .end(function (error, response) {
         assert.equal(response.status, expectedStatusCode, 'Status was not ' + expectedStatusCode + ' (OK). Instead, it was ' + response.status)
         done()
       })
@@ -66,7 +66,7 @@ describe('Routes', function () {
 
     request
       .get(ROOT_URL + testRoute)
-      .end(function(error, response) {
+      .end(function (error, response) {
         assert.equal(response.status, expectedStatusCode, 'Status was not ' + expectedStatusCode + ' (OK). Instead, it was ' + response.status)
         done()
       })
@@ -79,7 +79,7 @@ describe('Routes', function () {
 
     request
       .post(ROOT_URL + testRoute)
-      .end(function(error, response) {
+      .end(function (error, response) {
         assert.equal(response.status, expectedStatusCode, 'Status was not 200 (OK). Instead, it was ' + response.status)
         done()
       })
