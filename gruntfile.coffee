@@ -40,7 +40,6 @@ module.exports = (grunt) ->
         ]
         tasks: [
           "simplemocha"
-          "eslint"
         ]
       logs:
         files: "./app/logs/*.json"
