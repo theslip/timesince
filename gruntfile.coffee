@@ -5,53 +5,79 @@ module.exports = (grunt) ->
     express:
       dev:
         options:
-          script: "timesince.js"
+          script: "./timesince.js"
     watch:
       express:
         files: [
-          "app/views/*.html"
-          "app/config/*.js"
-          "public/scripts/*.js"
-          "app/controllers/*.js"
-          "app/config/*.js"
-          "timesince.js"
+          "./app/views/*.html"
+          "./app/config/*.js"
+          "./public/scripts/*.js"
+          "./app/controllers/*.js"
+          "./app/config/*.js"
+          "./app/*.js"
+          "./timesince.js"
         ]
         tasks: "express:dev"
         options:
           spawn: false
           livereload: true
       scripts:
-        files: "public/scripts/*.js"
+        files: "./public/scripts/*.js"
         tasks: "uglify"
       styles:
-        files: "public/styles/site.css"
+        files: "./public/styles/site.css"
         tasks: "cssmin"
+      validate:
+        files: [
+          "./test/*.js"
+          "./app/config/*.js"
+          "./public/scripts/*.js"
+          "./app/controllers/*.js"
+          "./app/config/*.js"
+          "./app/*.js"
+          "./timesince.js"
+          "./test/*.js"
+        ]
+        tasks: [
+          "simplemocha"
+        ]
+      logs:
+        files: "./app/logs/*.json"
+        tasks: "jsbeautifier:pretty"
     uglify:
       target:
-        files: "public/scripts/app.min.js": "public/scripts/*.js"
+        files: "./public/scripts/clientApp.min.js": [
+          "./public/scripts/clientApp.js"
+          "./public/scripts/listeners.js"
+        ]
     cssmin:
       target:
-        files: "public/styles/site.min.css": "public/styles/site.css"
+        files: "./public/styles/site.min.css": "public/styles/site.css"
     jsbeautifier:
       pretty:
-        src: "app/logs/*.log"
+        src: "./app/logs/*.json"
         options:
           json:
-            indentSize: 3
+            indentSize: 2
+    simplemocha:
+      all:
+        src: "test/*.js"
 
+    grunt.loadNpmTasks "grunt-simple-mocha"
     grunt.loadNpmTasks "grunt-jsbeautifier"
     grunt.loadNpmTasks "grunt-express-server"
     grunt.loadNpmTasks "grunt-contrib-watch"
     grunt.loadNpmTasks "grunt-contrib-uglify"
     grunt.loadNpmTasks "grunt-contrib-cssmin"
     grunt.loadNpmTasks "grunt-newer"
+
     grunt.registerTask "default", [
       "newer:uglify"
       "newer:cssmin"
     ]
     grunt.registerTask "server", [
       "express:dev"
-      "watch:express"
+      "watch"
     ]
     grunt.registerTask "pretty", [
       "jsbeautifier"
