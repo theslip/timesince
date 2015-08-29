@@ -1,0 +1,173 @@
+$primary-font: 'Open Sans', sans-serif;
+
+$blue: #3498db;
+$placeholder-color: #94BCE4;
+
+$large-query: 915px;
+$medium-query: 600px;
+$small-query: 420px;
+$xsmall-query: 350px;
+
+@mixin transition($property, $duration, $timing-function) {
+  -webkit-transition: $property $duration $timing-function;
+     -moz-transition: $property $duration $timing-function;
+      -ms-transition: $property $duration $timing-function;
+       -o-transition: $property $duration $timing-function;
+          transition: $property $duration $timing-function;
+}
+
+@mixin transform-translate($x-axis, $y-axis) {
+  -webkit-transform: translate($x-axis, $y-axis);
+     -moz-transform: translate($x-axis, $y-axis);
+      -ms-transform: translate($x-axis, $y-axis);
+       -o-transform: translate($x-axis, $y-axis);
+          transform: translate($x-axis, $y-axis);
+}
+
+@-ms-viewport {width: device-width;}
+@-o-viewport {width: device-width;}
+
+html {
+  background-color: $blue;
+}
+
+body {
+  opacity: 0;
+  @include transition(opacity, 1s, ease-in-out);
+}
+
+body.visible {
+    opacity: 1;
+}
+
+* {
+  font-family: $primary-font;
+  color: white;
+}
+
+.container {
+  text-align: center;
+  min-width: 420px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  @include transform-translate(-50%, -50%);
+
+  .time-container {
+    text-align: left;
+
+    .time-unit {
+      line-height: 3px;
+    }
+
+    .years {
+
+    }
+  }
+
+  input {
+    border-style: none;
+  }
+
+  .ts-input {
+    border-bottom: 3px solid #94BCE4;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  button {
+    cursor: pointer;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    padding: 1em;
+    margin: 1.5em 1em;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  #date {
+    font-size: 1.5em;
+    background-color: transparent;
+    width: 100%;
+  }
+
+  #difference {
+    opacity: 1;
+    background-color: transparent;
+    @include transition(opacity, 1s, ease-in-out);
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 0.8em;
+    width: 100%;
+  }
+
+  #difference.invisible {
+      opacity: 0;
+  }
+
+  .cursor-text {
+    cursor: text;
+  }
+
+  .date-heading {
+    margin-bottom: 0.2em;
+    font-size: 4.0em;
+    text-align: center;
+    font-weight: 100;
+  }
+
+  @media (max-width: $large-query) {
+    .date-heading {
+      font-size: 3.0em;
+    }
+    #date {
+      width: 81%;
+    }
+  }
+
+  @media (max-width: $medium-query) {
+    .date-heading {
+      font-size: 2.6em;
+    }
+    #date {
+      width: 71%;
+    }
+    .ts-input {
+      border-bottom: 2px solid #94BCE4;
+    }
+    #difference {
+      font-size: 0.7em;
+    }
+  }
+
+  @media (max-width: $small-query) {
+    .container {
+      min-width: 100%;
+    }
+  }
+
+  @media (max-width: $xsmall-query) {
+    .date-heading {
+      font-size: 2.3em;
+    }
+    #date {
+      width: 61%;
+    }
+    #difference {
+      font-size: 0.6em;
+    }
+  }
+
+}
+
+
+:-moz-placeholder {color: $placeholder-color;}
+::-moz-placeholder {color: $placeholder-color;}
+:-ms-input-placeholder {color: $placeholder-color;}
+::-webkit-input-placeholder {color: $placeholder-color;}
