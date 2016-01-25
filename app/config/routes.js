@@ -6,6 +6,11 @@ var differenceController = require('../controllers/differenceController')
 module.exports = function (router) {
   router.post('/difference', differenceController.getInputFromUser)
 
+  router.get('/sitemap.xml', function (req, res) {
+    res.header('Content-Type', 'application/xml')
+    res.sendFile('sitemap.xml', {'root': 'app/views'})
+  })
+
   router.get('/', function (req, res) {
     res.status(200)
     res.sendFile('index.html', {'root': 'app/views'})
