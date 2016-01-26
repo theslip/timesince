@@ -24,13 +24,24 @@ exports.getInputFromUser = function (req, res) {
   var dateDifferenceModel = getDifferenceBetweenDates(userInput)
 
   _.each(dateDifferenceModel, function (value, key) {
-    dateOuput += value.time + ' ' + value.name
+    dateOuput += value.time + ' ' + determinePluralOrSingularUnitOfTime(value.time, value.name)
     if ((dateDifferenceModel.length) - 1 !== key) {
       dateOuput += ', '
     }
   })
   res.send(dateOuput)
 }
+
+var determinePluralOrSingularUnitOfTime = function determinePluralOrSingularUnitOfTime (differenceInTime, unitOfTime) {
+  var lastIndexOfArray = _.last(unitOfTime)
+  if (differenceInTime == 1) {
+    return unitOfTime.slice(0, - 1)
+  }
+  else {
+    console.log(unitOfTime)
+    return unitOfTime
+  }
+};
 
 var getDifferenceBetweenDates = function getDifferenceBetweenDates (userInput) {
   var userDate = moment(userInput)
