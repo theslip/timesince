@@ -33,12 +33,10 @@ exports.getInputFromUser = function (req, res) {
 }
 
 var determinePluralOrSingularUnitOfTime = function determinePluralOrSingularUnitOfTime (differenceInTime, unitOfTime) {
-  var lastIndexOfArray = _.last(unitOfTime)
   if (differenceInTime == 1) {
     return unitOfTime.slice(0, - 1)
   }
   else {
-    console.log(unitOfTime)
     return unitOfTime
   }
 };
