@@ -16,20 +16,28 @@ var log = bunyan.createLogger({
   }]
 })
 
-exports.getInputFromUser = function (req, res) {
+var getInputFromUser = function getInputFromUser(req, res) {
   res.status(200)
   log.info(req)
-  var dateOuput = ''
   var userInput = req.body.date
+  var dateOutput = getDateOutput(userInput)
+  res.send(dateOutput)
+}
+
+var getDateOutput = function getDateOutput (userInput) {
+  var dateOutput = ''
   var dateDifferenceModel = getDifferenceBetweenDates(userInput)
+  console.log(dateDifferenceModel)
 
   _.each(dateDifferenceModel, function (value, key) {
-    dateOuput += value.time + ' ' + determinePluralOrSingularUnitOfTime(value.time, value.name)
+    var unitOfTime = determinePluralOrSingularUnitOfTime(value.time, value.name)
+
+    dateOutput += value.time + ' ' + unitOfTime
     if ((dateDifferenceModel.length) - 1 !== key) {
-      dateOuput += ', '
+      dateOutput += ', '
     }
   })
-  res.send(dateOuput)
+  return dateOutput
 }
 
 var determinePluralOrSingularUnitOfTime = function determinePluralOrSingularUnitOfTime (differenceInTime, unitOfTime) {
@@ -39,7 +47,7 @@ var determinePluralOrSingularUnitOfTime = function determinePluralOrSingularUnit
   else {
     return unitOfTime
   }
-};
+}
 
 var getDifferenceBetweenDates = function getDifferenceBetweenDates (userInput) {
   var userDate = moment(userInput)
@@ -55,4 +63,11 @@ var getDifferenceBetweenDates = function getDifferenceBetweenDates (userInput) {
     difference.push(dateDifference)
   })
   return difference
+}
+
+module.exports = {
+  getInputFromUser: getInputFromUser,
+  getDateOutput: getDateOutput,
+  determinePluralOrSingularUnitOfTime: determinePluralOrSingularUnitOfTime,
+  getDifferenceBetweenDates: getDifferenceBetweenDates
 }
