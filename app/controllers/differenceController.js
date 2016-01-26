@@ -27,8 +27,7 @@ var getInputFromUser = function getInputFromUser(req, res) {
 var getDateOutput = function getDateOutput (userInput) {
   var dateOutput = ''
   var dateDifferenceModel = getDifferenceBetweenDates(userInput)
-  console.log(dateDifferenceModel)
-
+  
   _.each(dateDifferenceModel, function (value, key) {
     var unitOfTime = determinePluralOrSingularUnitOfTime(value.time, value.name)
 
