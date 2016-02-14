@@ -1,68 +1,79 @@
-/* exported ClientModule */
 'use strict'
 
-var ClientModule = (function ClientModule () {
+var DateDifferenceModel = require('./DateDifferenceModel')
+var moment = require('moment')
 
-  var END_POINT = '/difference'
+var main = function () {
+  var differenceInputField = document.getElementById('difference')
+  var dateOuput = getDateOutput()
 
-  var getDateFromInput = function getDateFromInput () {
-    var dateEnteredByUser = getTextFromElement('date')
-    dateEnteredByUser = new Date(dateEnteredByUser)
+  dateOuput ? showInput(differenceInputField, dateOuput) : hideInput(differenceInputField)
+}
 
-    return dateEnteredByUser
-  }
+var getDateFromInput = function getDateFromInput () {
+  var dateEnteredByUser = getTextFromElement('date')
+  dateEnteredByUser = new Date(dateEnteredByUser)
 
-  var postUserInputToServer = function (url, dateEnteredByUser, callback) {
-    var req = new XMLHttpRequest()
+  return dateEnteredByUser
+}
 
-    req.open('POST', url, true)
-    req.setRequestHeader('Content-type', 'application/json')
+var getDateOutput = function getDateOutput () {
+  var userInput = getDateFromInput()
+  var dateOutput = ''
+  var dateDifferenceModel = getDifferenceBetweenDates(userInput)
 
-    req.addEventListener('readystatechange', function () {
-      if (req.status === 200) {
-        callback(req.responseText)
-      }
-    })
+  dateDifferenceModel.forEach(function (value, key) {
+    var unitOfTime = determinePluralOrSingularUnitOfTime(value.time, value.name)
 
-    req.addEventListener('error', function () {
-      alert('Server did not respond')
-    })
-
-    dateEnteredByUser = JSON.stringify(dateEnteredByUser)
-    req.send(dateEnteredByUser)
-  }
-
-  var successHandler = function (response) {
-    var differenceInputField = document.getElementById('difference')
-
-    response
-      ? showInput(differenceInputField, response)
-      : hideInput(differenceInputField)
-  }
-
-  var getTextFromElement = function (elementName) {
-    return document.getElementById(elementName).value
-  }
-
-  var setTextInElement = function (elementName, text) {
-    document.getElementById(elementName).value = text
-  }
-
-  var showInput = function (differenceInputField, dateOuput) {
-    setTextInElement('difference', dateOuput)
-    differenceInputField.classList.add('cursor-text')
-    differenceInputField.classList.remove('invisible')
-  }
-
-  var hideInput = function (differenceInputField) {
-    differenceInputField.classList.remove('cursor-text')
-    differenceInputField.classList.add('invisible')
-  }
-
-  return {
-    main: function main () {
-      var dateEnteredByUser = { date: getDateFromInput() }
-      postUserInputToServer(END_POINT, dateEnteredByUser, successHandler)
+    dateOutput += value.time + ' ' + unitOfTime
+    if ((dateDifferenceModel.length) - 1 !== key) {
+      dateOutput += ', '
     }
+  })
+  return dateOutput
+}
+
+var determinePluralOrSingularUnitOfTime = function determinePluralOrSingularUnitOfTime (differenceInTime, unitOfTime) {
+  if (differenceInTime === 1) {
+    return unitOfTime.slice(0, -1)
+  } else {
+    return unitOfTime
   }
-})()
+}
+
+var getDifferenceBetweenDates = function getDifferenceBetweenDates (userInput) {
+  var userDate = moment(userInput)
+  var currentTime = moment()
+  var difference = []
+  var unitOfTime = ['years', 'months', 'weeks', 'days', 'hours', 'minutes']
+
+  unitOfTime.forEach(function (unit) {
+    var dateDifference = new DateDifferenceModel(unit, currentTime, userDate)
+    if (dateDifference.time === undefined) {
+      return
+    }
+    difference.push(dateDifference)
+  })
+  return difference
+}
+
+var getTextFromElement = function (elementName) {
+  return document.getElementById(elementName).value
+}
+
+var setTextInElement = function (elementName, text) {
+  document.getElementById(elementName).value = text
+}
+
+var showInput = function (differenceInputField, dateOuput) {
+  setTextInElement('difference', dateOuput)
+  differenceInputField.classList.add('cursor-text')
+  differenceInputField.classList.remove('invisible')
+}
+
+var hideInput = function (differenceInputField) {
+  differenceInputField.classList.remove('cursor-text')
+  differenceInputField.classList.add('invisible')
+}
+
+module.exports = main

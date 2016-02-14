@@ -1,14 +1,13 @@
-/* eslint-env node, node */
 'use strict'
 
-var express = require('express')
+let express = require('express')
 
-var startServer = function server (port) {
-  var app = express()
-  var router = express.Router()
-  var serverInstance
+let startServer = function server (port) {
+  let app = express()
+  let router = express.Router()
+  let serverInstance
 
-  var initialize = function initialize () {
+  let initialize = function initialize () {
     require('./config/serverConfig')(app)
     require('./config/routes')(router)
     app.use('/', router)
@@ -22,7 +21,6 @@ var startServer = function server (port) {
       serverInstance.close()
     }
   }
-
 }
 
 module.exports = startServer

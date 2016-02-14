@@ -1,4 +1,3 @@
-/* eslint-env node, node */
 'use strict'
 
 var moment = require('moment')
