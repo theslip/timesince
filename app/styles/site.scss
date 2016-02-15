@@ -108,7 +108,7 @@ body.visible {
   }
 
   #difference.invisible {
-      opacity: 0;
+    opacity: 0;
   }
 
   .cursor-text {
@@ -163,9 +163,7 @@ body.visible {
       font-size: 0.6em;
     }
   }
-
 }
-
 
 :-moz-placeholder {color: $placeholder-color;}
 ::-moz-placeholder {color: $placeholder-color;}

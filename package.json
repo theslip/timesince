@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node timesince.js",
-    "browserify": "browserify ./app/config/browserify/scripts.js | uglifyjs -c > ./public/scripts/bundle.js"
+    "browserify": "browserify ./app/config/browserify/scripts.js | uglifyjs -c > ./public/scripts/bundle.js",
+    "sass": "node-sass ./app/styles/site.scss --output ./public/styles/ --output-style compressed --source-map true",
+    "all": "npm run browserify && npm run sass"
   },
   "repository": {
     "type": "git",
@@ -25,14 +27,12 @@
     "url": "https://github.com/theslip/timesince/issues"
   },
   "homepage": "https://github.com/theslip/timesince",
-  "devDependencies": {
-    "grunt-sass": "~1.0.0"
-  },
   "dependencies": {
     "body-parser": "~1.13.3",
     "browserify": "^13.0.0",
     "express": "^4.13.3",
     "moment": "^2.11.2",
+    "node-sass": "^3.4.2",
     "uglifyify": "^3.0.1"
   }
 }
