@@ -1,3 +1,3 @@
-require('../../../public/scripts/listeners')
-require('../../../public/scripts/DateDifferenceModel')
-require('../../../public/scripts/clientApp')
+require('../../client/listeners')
+require('../../client/DateDifferenceModel')
+require('../../client/clientApp')
