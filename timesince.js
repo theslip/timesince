@@ -1,4 +1,7 @@
 'use strict'
 
-var startServer = require('./app/server')
-startServer(3000)
+require('babel-register')
+let Server = require('./app/server').default
+let server = new Server()
+
+server.start()

@@ -1,26 +1,26 @@
 'use strict'
 
-let express = require('express')
+import webconfig from '../webconfig'
+import express from 'express'
+import { parser } from './config/parser'
+import { config } from './config/config'
+import { routes } from './config/routes'
+import http from 'http'
 
-let startServer = function server (port) {
-  let app = express()
-  let router = express.Router()
-  let serverInstance
-
-  let initialize = function initialize () {
-    require('./config/serverConfig')(app)
-    require('./config/routes')(router)
-    app.use('/', router)
-    serverInstance = app.listen(port)
+class Server {
+  constructor () {
+    this.port = webconfig.port
+    this.app = express()
+    this.parser = parser(this.app)
+    this.config = config(this.app)
+    this.routes = routes(this.app)
   }
-
-  initialize()
-
-  return {
-    stop: function stop () {
-      serverInstance.close()
-    }
+  start () {
+    this.serverInstance = http.createServer(this.app).listen(this.port)
+  }
+  stop () {
+    this.serverInstance.close()
   }
 }
 
-module.exports = startServer
+export default Server
