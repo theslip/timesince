@@ -1,21 +1,3 @@
-// export function renderError (html) {
-//   return `
-//     <!DOCTYPE html>
-//     <html>
-//       <head>
-//         <title>Error: 404</title>
-//         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
-//         <link rel='stylesheet' type='text/css' href='public/styles/errorpage.css' />
-//         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css' />
-//         <link href='http://fonts.googleapis.com/css?family=Raleway|Open+Sans+Condensed:300|Quicksand' rel='stylesheet' type='text/css' />
-//       </head>
-//       <body>
-//         ${html}
-//       </body>
-//     </html>
-//   `
-// }
-
 import React, { PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage'
