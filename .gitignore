@@ -1,5 +1,3 @@
 node_modules/
-bower_components/
-components/
 *.swp
-app/logs/*.*
+*.log

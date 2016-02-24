@@ -1,11 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:300);
+
 @-ms-viewport {width: device-width;}
 @-o-viewport {width: device-width;}
 
 body {
   background-color: #ecf0f1;
   color: #373d40;
-  /*font-family: 'Open Sans', sans-serif;*/
-  /*font-family: 'Raleway', sans-serif;*/
   font-family: 'Quicksand', sans-serif;
 }
 
