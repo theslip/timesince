@@ -23,10 +23,12 @@ export function Routes (app) {
       let html
       const routerContext = (<RouterContext {...props} />)
       const isRequestSitemap = (req.url === '/sitemap.xml')
-      html = isRequestSitemap ? renderToStaticMarkup(routerContext) : renderToString(routerContext)
+
       if (isRequestSitemap) {
         res.setHeader('Content-Type', 'text/xml')
-        html = renderSitemap(html)
+        html = renderSitemap(renderToStaticMarkup(routerContext))
+      } else {
+        html = renderToString(routerContext)
       }
       res.send(html)
     })
