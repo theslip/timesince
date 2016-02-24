@@ -1,8 +1,8 @@
 import webconfig from '../webconfig'
 import express from 'express'
-import { Parser } from './config/Parser'
-import { Config } from './config/Config'
-import { Routes } from './config/Routes'
+import { Parser } from './config/parser'
+import { Config } from './config/config'
+import { Routes } from './config/routes'
 import http from 'http'
 
 class Server {
