@@ -1,16 +1,11 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
-const HomeButton = ({ home }) => {
+const HomeButton = () => {
   return (
     <div className ='error-text'>
-      Click <span className='link'><a href={home.href}>{home.text}</a></span> to return home.
+      Click <span className='link'><a href='/'>here</a></span> to return home.
     </div>
   )
-}
-
-HomeButton.propTypes = {
-  text: PropTypes.string,
-  href: PropTypes.string
 }
 
 export default HomeButton
