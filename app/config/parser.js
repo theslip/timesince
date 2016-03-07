@@ -1,5 +1,3 @@
-'use strict'
-
 import bodyParser from 'body-parser'
 
 export function Parser (app) {
