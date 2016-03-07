@@ -60,15 +60,6 @@
     "uglifyify": "^3.0.1"
   },
   "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "es2015"
-          ]
-        }
-      ]
-    ]
+    "transform": [["babelify", { "presets": ["es2015"] }]]
   }
 }
