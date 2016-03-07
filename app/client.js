@@ -6,7 +6,9 @@ import { render } from 'react-dom'
 import { routes } from './routes'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-window.React = React
+if (process.env.NODE_ENV === 'development') {
+  window.React = React
+}
 
 document.addEventListener('DOMContentLoaded', function domOnLoad () {
   document.removeEventListener('DOMContentLoaded', domOnLoad, false)
