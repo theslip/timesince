@@ -1,21 +1,20 @@
-'use strict'
-
 let environment = process.env.NODE_ENV || 'development'
 
 const defaults = {
   'endpoints': {
-    'sitemap': 'sitemap.xml'
-  }
+    'sitemap': '/sitemap.xml'
+  },
+  'rootDir': __dirname
 }
 
 const webconfig = {
   'development': {
     'port': 3000,
-    'endpoints': defaults.endpoints
+    ...defaults
   },
   'production': {
     'port': process.env.port,
-    'endpoints': defaults.endpoints
+    ...defaults
   }
 }
 
