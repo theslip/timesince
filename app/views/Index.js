@@ -16,6 +16,12 @@ function mapDispatchToProps (dispatch) {
 }
 
 class Index extends React.Component {
+  componentDidMount () {
+    document.body.style.backgroundColor = ' #3498db'
+  }
+  componentWillUnmount () {
+    document.body.style.backgroundColor = null
+  }
   static propTypes = {
     date: PropTypes.string,
     disabled: PropTypes.bool,
@@ -27,7 +33,9 @@ class Index extends React.Component {
   render () {
     const { date, disabled, actions: { getDate } } = this.props
     return (
-      <DateElement date={date} disabled={disabled} getDate={getDate} />
+      <div id='index'>
+        <DateElement date={date} disabled={disabled} getDate={getDate} />
+      </div>
     )
   }
 }
