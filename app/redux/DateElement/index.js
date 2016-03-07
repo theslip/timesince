@@ -5,15 +5,15 @@ const DISABLE_INPUT = 'DISABLE_INPUT'
 const ENABLE_INPUT = 'ENABLE_INPUT'
 const UPDATE_DATE = 'UPDATE_DATE'
 
-export function disableInput () {
+function disableInput () {
   return { type: DISABLE_INPUT }
 }
 
-export function enableInput () {
+function enableInput () {
   return { type: ENABLE_INPUT }
 }
 
-export function updateDate (date) {
+function updateDate (date) {
   return { type: UPDATE_DATE, date }
 }
 
@@ -52,7 +52,6 @@ export function getDate (event) {
     if (keyCode === 13) {
       const lhs = new Date(event.target.value)
       const date = new DateDiff(lhs).toString()
-      console.log(date, isEmpty(date), typeof date)
       if (!isEmpty(date)) {
         dispatch(updateDate(date))
         dispatch(enableInput())
