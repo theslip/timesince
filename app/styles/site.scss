@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+@import url(https://fonts.googleapis.com/css?family=Quicksand:300);
 
-$primary-font: 'Open Sans', sans-serif;
+$index-font: 'Open Sans', sans-serif;
+$error-page-font: 'Quicksand', sans-serif;
 
 $blue: #3498db;
 $placeholder-color: #94BCE4;
@@ -29,9 +31,7 @@ $xsmall-query: 350px;
 @-ms-viewport {width: device-width;}
 @-o-viewport {width: device-width;}
 
-html {
-  background-color: $blue;
-}
+html {}
 
 body {
   opacity: 0;
@@ -42,132 +42,203 @@ body.visible {
     opacity: 1;
 }
 
-* {
-  font-family: $primary-font;
-  color: white;
-}
-
-.container {
-  text-align: center;
-  min-width: 420px;
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  @include transform-translate(-50%, -50%);
-
-  .time-container {
-    text-align: left;
-
-    .time-unit {
-      line-height: 3px;
-    }
-
-    .years {
-
-    }
+#index {
+  * {
+    font-family: $index-font;
+    color: white;
   }
 
-  input {
-    border-style: none;
-  }
-
-  .ts-input {
-    border-bottom: 3px solid #94BCE4;
-  }
-
-  input:focus {
-    outline: none;
-  }
-
-  button {
-    cursor: pointer;
-    font-size: 0.9em;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: none;
-    padding: 1em;
-    margin: 1.5em 1em;
-  }
-
-  button:focus {
-    outline: none;
-  }
-
-  #date {
-    font-size: 1.5em;
-    background-color: transparent;
-    width: 100%;
-  }
-
-  #difference {
-    opacity: 1;
-    background-color: transparent;
-    @include transition(opacity, 1s, ease-in-out);
+  .container {
     text-align: center;
-    font-size: 0.8em;
-    margin-top: 0.8em;
-    width: 100%;
-  }
+    min-width: 420px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    @include transform-translate(-50%, -50%);
 
-  #difference.invisible {
-    opacity: 0;
-  }
+    .time-container {
+      text-align: left;
 
-  .cursor-text {
-    cursor: text;
-  }
+      .time-unit {
+        line-height: 3px;
+      }
 
-  .date-heading {
-    margin-bottom: 0.2em;
-    font-size: 4.0em;
-    text-align: center;
-    font-weight: 100;
-  }
+      .years {
 
-  @media (max-width: $large-query) {
-    .date-heading {
-      font-size: 3.0em;
+      }
     }
-    #date {
-      width: 81%;
-    }
-  }
 
-  @media (max-width: $medium-query) {
-    .date-heading {
-      font-size: 2.6em;
+    input {
+      border-style: none;
     }
-    #date {
-      width: 71%;
-    }
+
     .ts-input {
-      border-bottom: 2px solid #94BCE4;
+      border-bottom: 3px solid #94BCE4;
     }
-    #difference {
-      font-size: 0.7em;
-    }
-  }
 
-  @media (max-width: $small-query) {
-    .container {
-      min-width: 100%;
+    input:focus {
+      outline: none;
     }
-  }
 
-  @media (max-width: $xsmall-query) {
-    .date-heading {
-      font-size: 2.3em;
+    button {
+      cursor: pointer;
+      font-size: 0.9em;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: none;
+      padding: 1em;
+      margin: 1.5em 1em;
     }
+
+    button:focus {
+      outline: none;
+    }
+
     #date {
-      width: 61%;
+      font-size: 1.5em;
+      background-color: transparent;
+      width: 100%;
     }
+
     #difference {
-      font-size: 0.6em;
+      opacity: 1;
+      background-color: transparent;
+      @include transition(opacity, 1s, ease-in-out);
+      text-align: center;
+      font-size: 0.8em;
+      margin-top: 0.8em;
+      width: 100%;
+    }
+
+    #difference.invisible {
+      opacity: 0;
+    }
+
+    .cursor-text {
+      cursor: text;
+    }
+
+    .date-heading {
+      margin-bottom: 0.2em;
+      font-size: 4.0em;
+      text-align: center;
+      font-weight: 100;
+    }
+
+    @media (max-width: $large-query) {
+      .date-heading {
+        font-size: 3.0em;
+      }
+      #date {
+        width: 81%;
+      }
+    }
+
+    @media (max-width: $medium-query) {
+      .date-heading {
+        font-size: 2.6em;
+      }
+      #date {
+        width: 71%;
+      }
+      .ts-input {
+        border-bottom: 2px solid #94BCE4;
+      }
+      #difference {
+        font-size: 0.7em;
+      }
+    }
+
+    @media (max-width: $small-query) {
+      .container {
+        min-width: 100%;
+      }
+    }
+
+    @media (max-width: $xsmall-query) {
+      .date-heading {
+        font-size: 2.3em;
+      }
+      #date {
+        width: 61%;
+      }
+      #difference {
+        font-size: 0.6em;
+      }
     }
   }
+  :-moz-placeholder {color: $placeholder-color;}
+  ::-moz-placeholder {color: $placeholder-color;}
+  :-ms-input-placeholder {color: $placeholder-color;}
+  ::-webkit-input-placeholder {color: $placeholder-color;}
 }
 
-:-moz-placeholder {color: $placeholder-color;}
-::-moz-placeholder {color: $placeholder-color;}
-:-ms-input-placeholder {color: $placeholder-color;}
-::-webkit-input-placeholder {color: $placeholder-color;}
+#error-page {
+  font-family: $error-page-font;
+  
+  .container {
+    margin-top: 20.5vh;
+    text-align: center;
+  }
+
+  .link a {
+    text-decoration: none;
+    color: #3498db;
+    margin: 0 2px;
+    position: relative;
+  }
+
+  .link a:before {
+    position: absolute;
+    margin: 0 auto;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #3498db;
+    content: '';
+    opacity: .3;
+    filter: alpha(opacity=30);
+    -webkit-transform: scaleX(.9);
+    -webkit-transition-property: opacity, -webkit-transform;
+            transition-property: opacity, -webkit-transform;
+    -webkit-transition-duration: .3s;
+            transition-duration: .3s;
+  }
+
+  .link a:hover:before {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transform: scaleX(1);
+  }
+
+  .error-heading {
+    white-space: nowrap;
+    overflow: hidden;
+      display: inline;
+    -webkit-transition: all 1s ease-in;
+            transition: all 1s ease-in;
+    margin: 0;
+    font-weight: 400;
+    font-size: 10vw;
+    font-size: 12.5vmin;
+    line-height: 10vw;
+    line-height: 12.5vmin;
+  }
+
+  .red {
+    color: #e74c3c;
+  }
+
+  .error-text {
+    font-weight: 300;
+    display: block;
+    -webkit-transition: all 1s ease-in;
+            transition: all 1s ease-in;
+    font-size: 1vw;
+    font-size: 3.5vmin;
+    line-height: 1vw;
+    line-height: 3.5vmin;
+    margin-top: 2vw;
+  }
+}
