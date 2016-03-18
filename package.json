@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node timesince.js",
-    "browserify": "browserify -t babelify ./app/client.js | uglifyjs -c > ./public/scripts/bundle.js",
-    "sass": "node-sass ./app/styles/site.scss --output ./public/styles/ --output-style compressed --source-map true",
-    "all": "npm run browserify && npm run sass"
+    "brow": "browserify -t babelify ./app/client.js | uglifyjs -c > ./public/scripts/bundle.js",
+    "rf": "npm run brow && npm run start",
+    "sass": "node-sass ./src/styles/site.scss --output ./src/.build/styles/ --output-style compressed --source-map true",
+    "all": "npm run brow && npm run sass"
   },
   "repository": {
     "type": "git",
@@ -28,8 +29,10 @@
   },
   "homepage": "https://github.com/theslip/timesince",
   "dependencies": {
+    "babel-plugin-transform-strict-mode": "^6.6.5",
     "body-parser": "~1.13.3",
     "browserify": "^13.0.0",
+    "core-js": "^2.2.0",
     "express": "^4.13.3",
     "moment": "^2.11.2",
     "node-jsx": "^0.13.3",
