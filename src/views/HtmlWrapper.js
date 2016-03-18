@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import Helmet from 'react-helmet'
 import serialize from 'serialize-javascript'
 import { renderToString } from 'react-dom/server'
 
-class HtmlWrapper extends React.Component {
+export default class HtmlWrapper extends Component {
   static propTypes = {
     title: PropTypes.string
   }
@@ -20,7 +20,7 @@ class HtmlWrapper extends React.Component {
           <title>{title}</title>
           <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
           <link rel='stylesheet' type='text/css' href='/public/styles/site.css' />
-          <link rel='icon' href='/public/favicon.ico' />
+          <link rel='icon' href='/favicon/favicon.ico' />
         </head>
         <body>
           <div id='content' dangerouslySetInnerHTML={{__html: content}}></div>
@@ -31,5 +31,3 @@ class HtmlWrapper extends React.Component {
     )
   }
 }
-
-export default HtmlWrapper

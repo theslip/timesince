@@ -5,7 +5,7 @@ import { Config } from './config/config'
 import { RouteHandler, SitemapRoute } from './routeHandler'
 import http from 'http'
 
-class Server {
+export class Server {
   constructor () {
     this.port = webconfig.port
     this.app = express()
@@ -21,5 +21,3 @@ class Server {
     this.serverInstance.close()
   }
 }
-
-export default Server

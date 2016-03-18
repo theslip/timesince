@@ -108,6 +108,9 @@ body.visible {
       font-size: 0.8em;
       margin-top: 0.8em;
       width: 100%;
+      .unit {
+          margin: 0 3px 0 0
+      }
     }
 
     #difference.invisible {
@@ -175,7 +178,7 @@ body.visible {
 
 #error-page {
   font-family: $error-page-font;
-  
+
   .container {
     margin-top: 20.5vh;
     text-align: center;

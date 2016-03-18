@@ -1,6 +1,5 @@
 'use strict'
 
 require('babel-core/register')
-let Server = require('./app/server').default
-let server = new Server()
-server.start()
+let Server = require('./src/server').Server
+new Server().start()

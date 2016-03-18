@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage'
 
-class ErrorPage extends Component {
+export default class ErrorPage extends Component {
   componentDidMount () {
     document.body.style.backgroundColor = ' #ecf0f1'
   }
@@ -16,5 +16,3 @@ class ErrorPage extends Component {
     )
   }
 }
-
-export default ErrorPage

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import DateElement from '../components/DateElement/DateElement'
@@ -6,8 +6,7 @@ import * as ActionCreators from '../redux/DateElement'
 
 function mapStateToProps (state) {
   return {
-    date: state.dateElement.date,
-    disabled: state.dateElement.disabled
+    date: state.dateElement.date
   }
 }
 
@@ -15,7 +14,7 @@ function mapDispatchToProps (dispatch) {
   return { actions: bindActionCreators(ActionCreators, dispatch) }
 }
 
-class Index extends React.Component {
+class Index extends Component {
   componentDidMount () {
     document.body.style.backgroundColor = ' #3498db'
   }
@@ -23,18 +22,17 @@ class Index extends React.Component {
     document.body.style.backgroundColor = null
   }
   static propTypes = {
-    date: PropTypes.string,
-    disabled: PropTypes.bool,
+    date: PropTypes.array,
     title: PropTypes.string
   }
   static defaultProps = {
     title: 'Timesince - A Date Calculator'
   }
   render () {
-    const { date, disabled, actions: { getDate } } = this.props
+    const { date, actions: { getDate } } = this.props
     return (
       <div id='index'>
-        <DateElement date={date} disabled={disabled} getDate={getDate} />
+        <DateElement date={date} getDate={getDate} />
       </div>
     )
   }
