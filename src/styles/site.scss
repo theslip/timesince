@@ -101,6 +101,7 @@ body.visible {
     }
 
     #difference {
+      min-height: 18px;
       opacity: 1;
       background-color: transparent;
       @include transition(opacity, 1s, ease-in-out);
