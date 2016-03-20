@@ -9,7 +9,7 @@ export class Server {
   constructor () {
     this.port = webconfig.port
     this.app = express()
-    this.app.use('/sitemap.xml', SitemapRoute)
+    this.app.use(webconfig.endpoints.sitemap, SitemapRoute)
     this.parser = Parser(this.app)
     this.config = Config(this.app)
     this.router = RouteHandler(this.app)
