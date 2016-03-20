@@ -4,5 +4,8 @@
     "react",
     "stage-0"
   ],
-  "plugins": ["transform-strict-mode"]
+  "plugins": [
+    "transform-runtime",
+    "transform-strict-mode"
+  ]
 }
