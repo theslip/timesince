@@ -28,7 +28,7 @@ export function getDate (event) {
     const keyCode = event.keyCode || event.which
     if (keyCode === 13) {
       const lhs = new Date(event.target.value)
-      const date = new DateDiff(lhs).date
+      const date = new DateDiff(lhs)
       if (!isEmpty(date)) {
         dispatch(updateDate(date))
       }

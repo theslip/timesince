@@ -21,7 +21,7 @@ export class DateDiff {
   constructor (lhs, rhs = moment(new Date())) {
     this.lhs = moment(lhs)
     this.rhs = rhs
-    this.date = getTimeBetweenDates(this.lhs, this.rhs)
+    return getTimeBetweenDates(this.lhs, this.rhs)
   }
 }
 
