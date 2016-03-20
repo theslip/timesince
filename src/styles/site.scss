@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
 @import url(https://fonts.googleapis.com/css?family=Quicksand:300);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 $index-font: 'Open Sans', sans-serif;
 $error-page-font: 'Quicksand', sans-serif;
@@ -28,6 +29,13 @@ $xsmall-query: 350px;
           transform: translate($x-axis, $y-axis);
 }
 
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+
 @-ms-viewport {width: device-width;}
 @-o-viewport {width: device-width;}
 
@@ -43,12 +51,17 @@ body.visible {
 }
 
 #index {
-  * {
+  font-family: $index-font;
+  color: white;
+
+  @include placeholder {
+    color: $placeholder-color;
     font-family: $index-font;
-    color: white;
   }
 
   .container {
+    font-family: $index-font;
+    color: white;
     text-align: center;
     min-width: 420px;
     position: absolute;
@@ -73,6 +86,8 @@ body.visible {
     }
 
     .ts-input {
+      font-family: inherit;
+      color: inherit;
       border-bottom: 3px solid #94BCE4;
     }
 
@@ -171,10 +186,6 @@ body.visible {
       }
     }
   }
-  :-moz-placeholder {color: $placeholder-color;}
-  ::-moz-placeholder {color: $placeholder-color;}
-  :-ms-input-placeholder {color: $placeholder-color;}
-  ::-webkit-input-placeholder {color: $placeholder-color;}
 }
 
 #error-page {
