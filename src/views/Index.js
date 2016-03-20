@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import DateElement from '../components/DateElement/DateElement'
+import IconToolBar from '../components/IconToolBar/IconToolBar'
 import * as ActionCreators from '../redux/DateElement'
 
 function mapStateToProps (state) {
@@ -32,6 +33,7 @@ class Index extends Component {
     const { date, actions: { getDate } } = this.props
     return (
       <div id='index'>
+        <IconToolBar />
         <DateElement date={date} getDate={getDate} />
       </div>
     )
