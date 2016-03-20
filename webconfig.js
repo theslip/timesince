@@ -1,21 +1,19 @@
-let environment = process.env.NODE_ENV || 'development'
+const environment = process.env.NODE_ENV || 'development'
+const host = process.env.HOST || 'localhost'
+const port = process.env.PORT || 3000
 
-const defaults = {
-  'endpoints': {
-    'sitemap': '/sitemap.xml'
+module.exports = {
+  isProd: environment === 'production',
+  host: host,
+  port: port,
+  endpoints: {
+    timesince: `http://${host}:${port}/`,
+    webpack: `http://${host}:8080/`,
+    sitemap: '/sitemap.xml',
+    scripts: 'public/scripts/',
+    styles: 'public/styles/'
   },
-  'rootDir': __dirname
+  bundleName: 'bundle.js',
+  cssName: 'site.css',
+  rootDir: __dirname
 }
-
-const webconfig = {
-  'development': {
-    'port': 3000,
-    ...defaults
-  },
-  'production': {
-    'port': process.env.port,
-    ...defaults
-  }
-}
-
-export default webconfig[environment]
